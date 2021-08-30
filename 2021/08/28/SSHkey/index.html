@@ -9,23 +9,23 @@
     <meta name="description" content="ssh 密钥验证的介绍以及密钥的添加方法 &amp;emsp;&amp;emsp;第一次接触到ssh密钥还是我在捣鼓树莓派的时候，当时拿着我的树莓派PI4B在搞项目，做一些IoT之类的小系统。当时需要上传各种驱动和相关代码进行测试，单纯的命令行进行ssh连接肯定会比较麻烦，但又感觉像putty、MobaXterm这类的又不够美观，于是就选择了Vscode来作为IDE,它里面的remote-ssh插件可以很方便的与">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ssh密钥验证那些事">
-<meta property="og:url" content="https://mrilboom.github.io/2021/08/28/ssh%E5%AF%86%E9%92%A5%E9%AA%8C%E8%AF%81/index.html">
+<meta property="og:url" content="https://mrilboom.github.io/2021/08/28/SSHkey/index.html">
 <meta property="og:site_name" content="mrilboom">
 <meta property="og:description" content="ssh 密钥验证的介绍以及密钥的添加方法 &amp;emsp;&amp;emsp;第一次接触到ssh密钥还是我在捣鼓树莓派的时候，当时拿着我的树莓派PI4B在搞项目，做一些IoT之类的小系统。当时需要上传各种驱动和相关代码进行测试，单纯的命令行进行ssh连接肯定会比较麻烦，但又感觉像putty、MobaXterm这类的又不够美观，于是就选择了Vscode来作为IDE,它里面的remote-ssh插件可以很方便的与">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://mrilboom.github.io/2021/08/28/ssh%E5%AF%86%E9%92%A5%E9%AA%8C%E8%AF%81/wiki.png">
-<meta property="og:image" content="https://mrilboom.github.io/2021/08/28/ssh%E5%AF%86%E9%92%A5%E9%AA%8C%E8%AF%81/sshkey.png">
-<meta property="og:image" content="https://mrilboom.github.io/2021/08/28/ssh%E5%AF%86%E9%92%A5%E9%AA%8C%E8%AF%81/rsaerror.png">
-<meta property="og:image" content="https://mrilboom.github.io/2021/08/28/ssh%E5%AF%86%E9%92%A5%E9%AA%8C%E8%AF%81/addkey.png">
-<meta property="og:image" content="https://mrilboom.github.io/2021/08/28/ssh%E5%AF%86%E9%92%A5%E9%AA%8C%E8%AF%81/addnew.png">
+<meta property="og:image" content="https://mrilboom.github.io/2021/08/28/SSHkey/wiki.png">
+<meta property="og:image" content="https://mrilboom.github.io/2021/08/28/SSHkey/sshkey.png">
+<meta property="og:image" content="https://mrilboom.github.io/2021/08/28/SSHkey/rsaerror.png">
+<meta property="og:image" content="https://mrilboom.github.io/2021/08/28/SSHkey/addkey.png">
+<meta property="og:image" content="https://mrilboom.github.io/2021/08/28/SSHkey/addnew.png">
 <meta property="article:published_time" content="2021-08-27T17:16:12.000Z">
-<meta property="article:modified_time" content="2021-08-30T02:33:09.843Z">
+<meta property="article:modified_time" content="2021-08-30T08:10:42.758Z">
 <meta property="article:author" content="mrilboom">
 <meta property="article:tag" content="linux">
 <meta property="article:tag" content="ssh">
 <meta property="article:tag" content="github">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://mrilboom.github.io/2021/08/28/ssh%E5%AF%86%E9%92%A5%E9%AA%8C%E8%AF%81/wiki.png">
+<meta name="twitter:image" content="https://mrilboom.github.io/2021/08/28/SSHkey/wiki.png">
     
     
       
@@ -81,7 +81,7 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" aria-label="上一篇 " href="/2021/08/30/cx-oracle%E6%93%8D%E4%BD%9COracle%E6%95%B0%E6%8D%AE%E5%BA%93/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="上一篇 " href="/2021/08/30/cx_Oracle_1/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
         <li><a class="icon" aria-label="返回顶部 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
@@ -95,17 +95,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://mrilboom.github.io/2021/08/28/ssh%E5%AF%86%E9%92%A5%E9%AA%8C%E8%AF%81/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://mrilboom.github.io/2021/08/28/ssh%E5%AF%86%E9%92%A5%E9%AA%8C%E8%AF%81/&text=ssh密钥验证那些事"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://mrilboom.github.io/2021/08/28/ssh%E5%AF%86%E9%92%A5%E9%AA%8C%E8%AF%81/&title=ssh密钥验证那些事"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://mrilboom.github.io/2021/08/28/ssh%E5%AF%86%E9%92%A5%E9%AA%8C%E8%AF%81/&is_video=false&description=ssh密钥验证那些事"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=ssh密钥验证那些事&body=Check out this article: https://mrilboom.github.io/2021/08/28/ssh%E5%AF%86%E9%92%A5%E9%AA%8C%E8%AF%81/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://mrilboom.github.io/2021/08/28/ssh%E5%AF%86%E9%92%A5%E9%AA%8C%E8%AF%81/&title=ssh密钥验证那些事"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://mrilboom.github.io/2021/08/28/ssh%E5%AF%86%E9%92%A5%E9%AA%8C%E8%AF%81/&title=ssh密钥验证那些事"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://mrilboom.github.io/2021/08/28/ssh%E5%AF%86%E9%92%A5%E9%AA%8C%E8%AF%81/&title=ssh密钥验证那些事"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://mrilboom.github.io/2021/08/28/ssh%E5%AF%86%E9%92%A5%E9%AA%8C%E8%AF%81/&title=ssh密钥验证那些事"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://mrilboom.github.io/2021/08/28/ssh%E5%AF%86%E9%92%A5%E9%AA%8C%E8%AF%81/&name=ssh密钥验证那些事&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://mrilboom.github.io/2021/08/28/ssh%E5%AF%86%E9%92%A5%E9%AA%8C%E8%AF%81/&t=ssh密钥验证那些事"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://mrilboom.github.io/2021/08/28/SSHkey/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://mrilboom.github.io/2021/08/28/SSHkey/&text=ssh密钥验证那些事"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://mrilboom.github.io/2021/08/28/SSHkey/&title=ssh密钥验证那些事"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://mrilboom.github.io/2021/08/28/SSHkey/&is_video=false&description=ssh密钥验证那些事"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ssh密钥验证那些事&body=Check out this article: https://mrilboom.github.io/2021/08/28/SSHkey/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://mrilboom.github.io/2021/08/28/SSHkey/&title=ssh密钥验证那些事"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://mrilboom.github.io/2021/08/28/SSHkey/&title=ssh密钥验证那些事"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://mrilboom.github.io/2021/08/28/SSHkey/&title=ssh密钥验证那些事"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://mrilboom.github.io/2021/08/28/SSHkey/&title=ssh密钥验证那些事"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://mrilboom.github.io/2021/08/28/SSHkey/&name=ssh密钥验证那些事&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://mrilboom.github.io/2021/08/28/SSHkey/&t=ssh密钥验证那些事"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -158,15 +158,15 @@
 <p>&emsp;&emsp;第一次接触到ssh密钥还是我在捣鼓树莓派的时候，当时拿着我的树莓派PI4B在搞项目，做一些IoT之类的小系统。当时需要上传各种驱动和相关代码进行测试，单纯的命令行进行ssh连接肯定会比较麻烦，但又感觉像<a target="_blank" rel="noopener" href="https://www.chiark.greenend.org.uk/~sgtatham/putty/">putty</a>、<a target="_blank" rel="noopener" href="https://mobaxterm.mobatek.net/">MobaXterm</a>这类的又不够美观，于是就选择了Vscode来作为IDE,它里面的remote-ssh插件可以很方便的与linux服务器进行ssh连接，只需要配置好.config文件就可以进行连接了。但是有一个问题，每次连树莓派的时候我就都得输一次密码，有时候一不小心关了终端什么的，又得重新开一遍，挺麻烦的，于是就在网上找有没有什么方法可以让vscode记录密码自动登录或者可以避开密码验证什么的，然后我就找到了这个叫做SSH key 的东西。  </p>
 <hr>
 <h2 id="SSH-key简单介绍"><a href="#SSH-key简单介绍" class="headerlink" title="SSH key简单介绍"></a>SSH key简单介绍</h2><p>&emsp;&emsp;通常我们进行SSH远程连接服务器是指定一个用户，然后再输入其密码，由服务器进行验证通过之后即可建立连接。<br>&emsp;&emsp;SSH key的验证方法有一些不同，它会同时产生两个密码(密钥)，其中一个被称作公钥，另一个被称作私钥。公钥，顾名思义，就是可以公开的密钥，交由服务器保管作为加密密钥和凭证，而私钥则是自己需要秘密保管的密钥。<br>&emsp;&emsp;SSH key采用了一种叫做”<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/1208652?fr=aladdin">非对称加密</a>“的方式进行通信加密  </p>
-<img src="/2021/08/28/ssh%E5%AF%86%E9%92%A5%E9%AA%8C%E8%AF%81/wiki.png" class>  
+<img src="/2021/08/28/SSHkey/wiki.png" class>  
 <p>Nicobon，<a target="_blank" rel="noopener" href="https://commons.wikimedia.org/w/index.php?curid=48484042">CC BY-SA 4.0</a></p>
 <p>其默认算法是<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/RSA%E7%AE%97%E6%B3%95/263310?fromtitle=RSA&fromid=210678&fr=aladdin">rsa算法</a>，用户需要与服务器建立连接时，就向服务器发起请求，同时将公钥（<font color="red">由私钥可以很容易生成公钥，但是由公钥生成私钥以目前的算力来说几乎不可能</font>）捎带上去，服务器将该密钥与留存在自己机器上的公钥相比对，如果有一致的话，就会向请求主机发送一个用该公钥加密的“challenge request”，只有私钥才能解密该“challenge request”并作出相应的回应。<br>&emsp;&emsp;这一系列的过程中，只有公钥在网络上进行了传递，私钥一直保存在了本机，相比于输入密码，密码通过网络传递到服务器再进行验证的过程来说，无疑是更加安全的。</p>
 <h2 id="SSH-key使用"><a href="#SSH-key使用" class="headerlink" title="SSH key使用"></a>SSH key使用</h2><p>&emsp;&emsp;一般在发行版的linux中，系统在第一次初始化的时候都会生成默认的公钥和私钥对，存放路径在/etc/ssh/ 文件夹下：</p>
-<img src="/2021/08/28/ssh%E5%AF%86%E9%92%A5%E9%AA%8C%E8%AF%81/sshkey.png" class title="sshkey">
+<img src="/2021/08/28/SSHkey/sshkey.png" class title="sshkey">
 <p>里面预置了许多算法，如dsa、rsa、ecdsa等，一般的sshkeys都会使用rsa算法来生成密钥对。要使用该密钥对，可以进行如下操作:  </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cp /etc/ssh/ssh_host_rsa_key.pub  ~/.ssh/id_rsa</span><br><span class="line">sudo chmod 600  ~/.ssh/id_rsa</span><br><span class="line"># 如果有特定的端口，请用 scp -P port 指定</span><br><span class="line">scp /etc/ssh/ssh_host_rsa_key   usr@host:~</span><br><span class="line"># 连接到服务器</span><br><span class="line">ssh usr@host</span><br><span class="line">sudo cat ~/ssh_host_rsa_key  &gt;&gt; ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
 <p>*<strong>注意*：id_rsa的权限（包括.ssh目录权限）不能过高，一般600即可，否则会报错</strong></p>
-<img src="/2021/08/28/ssh%E5%AF%86%E9%92%A5%E9%AA%8C%E8%AF%81/rsaerror.png" class title="error">
+<img src="/2021/08/28/SSHkey/rsaerror.png" class title="error">
 
 <p>&emsp;&emsp;此外，生成ssh-key密钥对还可以采用SSH-keygen的命令,这里也更推荐使用这种方法来使用ssh密钥，该方法可以在该用户目录下生成.ssh文件夹。并在该文件夹下存放密钥，不必担心文件权限的问题。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C  &quot;your comments&quot; </span><br></pre></td></tr></table></figure>
@@ -174,10 +174,10 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Enter file in which to save the key (/root/.ssh/id_rsa): /root/.ssh/id_rsa</span><br><span class="line">Enter passphrase (empty for no passphrase): </span><br><span class="line">Enter same passphrase again:</span><br><span class="line">Your identification has been saved in /root/ssh/id_rsa</span><br><span class="line">Your public key has been saved in /root/ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
 <p>将公钥复制到需要登陆的服务器上的authorized_keys之后，即可使用该ssh密钥对进行ssh密钥方式登录。  </p>
 <h2 id="github-SSH-key添加方式"><a href="#github-SSH-key添加方式" class="headerlink" title="github SSH key添加方式"></a>github SSH key添加方式</h2><p>&emsp;&emsp;早在去年，github就宣布了要取消<a target="_blank" rel="noopener" href="https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/">账户密码登录</a>的验证方式，并在今年8月13号正式实施。如今使用账号密码进行push时，github会直接拒绝验证，因此必须采取添加SSH密钥或其他的方式进行登录验证。在成功生成了SSH key密钥对之后，其实需要操作的步骤就很简单了</p>
-<img src="/2021/08/28/ssh%E5%AF%86%E9%92%A5%E9%AA%8C%E8%AF%81/addkey.png" class title="addkey">  
+<img src="/2021/08/28/SSHkey/addkey.png" class title="addkey">  
 
 <p>只需要将自己的id_rsa.pub中的内容复制，粘贴到key框中即可  </p>
-<img src="/2021/08/28/ssh%E5%AF%86%E9%92%A5%E9%AA%8C%E8%AF%81/addnew.png" class title="addnew">
+<img src="/2021/08/28/SSHkey/addnew.png" class title="addnew">
 
 <p>可采用如下方法测试:  </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br><span class="line">Hi mrilboom! You&#x27;ve successfully authenticated, but GitHub does not provide shell access.</span><br></pre></td></tr></table></figure>
@@ -210,17 +210,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://mrilboom.github.io/2021/08/28/ssh%E5%AF%86%E9%92%A5%E9%AA%8C%E8%AF%81/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://mrilboom.github.io/2021/08/28/ssh%E5%AF%86%E9%92%A5%E9%AA%8C%E8%AF%81/&text=ssh密钥验证那些事"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://mrilboom.github.io/2021/08/28/ssh%E5%AF%86%E9%92%A5%E9%AA%8C%E8%AF%81/&title=ssh密钥验证那些事"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://mrilboom.github.io/2021/08/28/ssh%E5%AF%86%E9%92%A5%E9%AA%8C%E8%AF%81/&is_video=false&description=ssh密钥验证那些事"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=ssh密钥验证那些事&body=Check out this article: https://mrilboom.github.io/2021/08/28/ssh%E5%AF%86%E9%92%A5%E9%AA%8C%E8%AF%81/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://mrilboom.github.io/2021/08/28/ssh%E5%AF%86%E9%92%A5%E9%AA%8C%E8%AF%81/&title=ssh密钥验证那些事"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://mrilboom.github.io/2021/08/28/ssh%E5%AF%86%E9%92%A5%E9%AA%8C%E8%AF%81/&title=ssh密钥验证那些事"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://mrilboom.github.io/2021/08/28/ssh%E5%AF%86%E9%92%A5%E9%AA%8C%E8%AF%81/&title=ssh密钥验证那些事"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://mrilboom.github.io/2021/08/28/ssh%E5%AF%86%E9%92%A5%E9%AA%8C%E8%AF%81/&title=ssh密钥验证那些事"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://mrilboom.github.io/2021/08/28/ssh%E5%AF%86%E9%92%A5%E9%AA%8C%E8%AF%81/&name=ssh密钥验证那些事&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://mrilboom.github.io/2021/08/28/ssh%E5%AF%86%E9%92%A5%E9%AA%8C%E8%AF%81/&t=ssh密钥验证那些事"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://mrilboom.github.io/2021/08/28/SSHkey/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://mrilboom.github.io/2021/08/28/SSHkey/&text=ssh密钥验证那些事"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://mrilboom.github.io/2021/08/28/SSHkey/&title=ssh密钥验证那些事"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://mrilboom.github.io/2021/08/28/SSHkey/&is_video=false&description=ssh密钥验证那些事"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ssh密钥验证那些事&body=Check out this article: https://mrilboom.github.io/2021/08/28/SSHkey/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://mrilboom.github.io/2021/08/28/SSHkey/&title=ssh密钥验证那些事"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://mrilboom.github.io/2021/08/28/SSHkey/&title=ssh密钥验证那些事"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://mrilboom.github.io/2021/08/28/SSHkey/&title=ssh密钥验证那些事"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://mrilboom.github.io/2021/08/28/SSHkey/&title=ssh密钥验证那些事"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://mrilboom.github.io/2021/08/28/SSHkey/&name=ssh密钥验证那些事&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://mrilboom.github.io/2021/08/28/SSHkey/&t=ssh密钥验证那些事"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
