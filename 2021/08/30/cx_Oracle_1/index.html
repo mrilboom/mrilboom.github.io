@@ -1,12 +1,26 @@
 <!DOCTYPE html>
-<html lang=zh>
+<html lang="zh_CN">
 <head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="cx_Oracle操作Oracle数据库(一):配置篇 &amp;emsp;&amp;emsp;前不久刚找到了第一份实习工作,刚进公司搞不了啥东西,也就熟悉一下环境,于是导师就给了我一份解析excel数据的活干.要求是将远程服务器中的数据拉到本地,并用python将数据进行解析,然后存入Oracle数据库中.网上查了一下,看上去使用最多的就是cx_Oracle这个库了,cx_Oracle配置起来较为复杂,刚开始的">
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"mrilboom.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.7.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/./public/search.xml","localsearch":{"enable":"auto","trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="cx_Oracle操作Oracle数据库(一):配置篇 &amp;emsp;&amp;emsp;前不久刚找到了第一份实习工作,刚进公司搞不了啥东西,也就熟悉一下环境,于是导师就给了我一份解析excel数据的活干.要求是将远程服务器中的数据拉到本地,并用python将数据进行解析,然后存入Oracle数据库中.网上查了一下,看上去使用最多的就是cx_Oracle这个库了,cx_Oracle配置起来较为复杂,刚开始的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="cx_Oracle操作Oracle数据库">
 <meta property="og:url" content="https://mrilboom.github.io/2021/08/30/cx_Oracle_1/index.html">
@@ -14,161 +28,293 @@
 <meta property="og:description" content="cx_Oracle操作Oracle数据库(一):配置篇 &amp;emsp;&amp;emsp;前不久刚找到了第一份实习工作,刚进公司搞不了啥东西,也就熟悉一下环境,于是导师就给了我一份解析excel数据的活干.要求是将远程服务器中的数据拉到本地,并用python将数据进行解析,然后存入Oracle数据库中.网上查了一下,看上去使用最多的就是cx_Oracle这个库了,cx_Oracle配置起来较为复杂,刚开始的">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://mrilboom.github.io/2021/08/30/cx_Oracle_1/cx_Oracle_arch.png">
+<meta property="og:image" content="https://mrilboom.github.io/2021/08/30/cx_Oracle_1/download.png">
 <meta property="article:published_time" content="2021-08-30T02:46:51.000Z">
-<meta property="article:modified_time" content="2021-08-30T09:13:52.342Z">
+<meta property="article:modified_time" content="2021-08-31T02:32:43.069Z">
 <meta property="article:author" content="mrilboom">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="Oracle">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://mrilboom.github.io/2021/08/30/cx_Oracle_1/cx_Oracle_arch.png">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>cx_Oracle操作Oracle数据库</title>
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
 
-    <!-- persian styles -->
-    
-    <!-- rss -->
-    
-    
-	<!-- mathjax -->
-	
-<meta name="generator" content="Hexo 5.4.0"></head>
 
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-         
-          <li><a href="/">首页</a></li>
-         
-          <li><a href="/about/">关于</a></li>
-         
-          <li><a href="/tags/">标签</a></li>
-        
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        
-        <li><a class="icon" aria-label="下一篇 " href="/2021/08/28/SSHkey/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="返回顶部 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="分享文章 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">上一篇</span>
-      <span id="i-next" class="info" style="display:none;">下一篇</span>
-      <span id="i-top" class="info" style="display:none;">返回顶部</span>
-      <span id="i-share" class="info" style="display:none;">分享文章</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://mrilboom.github.io/2021/08/30/cx_Oracle_1/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://mrilboom.github.io/2021/08/30/cx_Oracle_1/&text=cx_Oracle操作Oracle数据库"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://mrilboom.github.io/2021/08/30/cx_Oracle_1/&title=cx_Oracle操作Oracle数据库"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://mrilboom.github.io/2021/08/30/cx_Oracle_1/&is_video=false&description=cx_Oracle操作Oracle数据库"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=cx_Oracle操作Oracle数据库&body=Check out this article: https://mrilboom.github.io/2021/08/30/cx_Oracle_1/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://mrilboom.github.io/2021/08/30/cx_Oracle_1/&title=cx_Oracle操作Oracle数据库"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://mrilboom.github.io/2021/08/30/cx_Oracle_1/&title=cx_Oracle操作Oracle数据库"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://mrilboom.github.io/2021/08/30/cx_Oracle_1/&title=cx_Oracle操作Oracle数据库"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://mrilboom.github.io/2021/08/30/cx_Oracle_1/&title=cx_Oracle操作Oracle数据库"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://mrilboom.github.io/2021/08/30/cx_Oracle_1/&name=cx_Oracle操作Oracle数据库&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://mrilboom.github.io/2021/08/30/cx_Oracle_1/&t=cx_Oracle操作Oracle数据库"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-    <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#cx-Oracle%E6%93%8D%E4%BD%9COracle%E6%95%B0%E6%8D%AE%E5%BA%93-%E4%B8%80-%E9%85%8D%E7%BD%AE%E7%AF%87"><span class="toc-number">1.</span> <span class="toc-text">cx_Oracle操作Oracle数据库(一):配置篇</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#cx-Oracle-%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.</span> <span class="toc-text">cx_Oracle 介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.1.</span> <span class="toc-text">结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#instant-client"><span class="toc-number">1.1.2.</span> <span class="toc-text">instant client</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cx-Oracle-%E5%AE%89%E8%A3%85"><span class="toc-number">1.2.</span> <span class="toc-text">cx_Oracle 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8cx-Oracle%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.3.</span> <span class="toc-text">使用cx_Oracle连接数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%EF%BC%9A"><span class="toc-number">1.4.</span> <span class="toc-text">附一些常见错误：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DPI-1047"><span class="toc-number">1.4.1.</span> <span class="toc-text">DPI-1047</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ORA-12514"><span class="toc-number">1.4.2.</span> <span class="toc-text">ORA-12514</span></a></li></ol></li></ol></li></ol>
-    </div>
-  </span>
-</div>
-
-    
-    <div class="content index py4">
-        
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle" itemprop="name headline">
-        cx_Oracle操作Oracle数据库
-    </h1>
+<link rel="canonical" href="https://mrilboom.github.io/2021/08/30/cx_Oracle_1/">
 
 
 
-    <div class="meta">
-      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">mrilboom</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2021-08-30T02:46:51.000Z" itemprop="datePublished">2021-08-30</time>
-        
-      
-    </div>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh_CN","comments":true,"permalink":"https://mrilboom.github.io/2021/08/30/cx_Oracle_1/","path":"2021/08/30/cx_Oracle_1/","title":"cx_Oracle操作Oracle数据库"}</script>
 
-
-      
-
-      
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link-link" href="/tags/Oracle/" rel="tag">Oracle</a>, <a class="tag-link-link" href="/tags/python/" rel="tag">python</a>
-    </div>
-
-
-    </div>
-  </header>
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>cx_Oracle操作Oracle数据库 | mrilboom</title>
   
 
-  <div class="content" itemprop="articleBody">
-    <h1 id="cx-Oracle操作Oracle数据库-一-配置篇"><a href="#cx-Oracle操作Oracle数据库-一-配置篇" class="headerlink" title="cx_Oracle操作Oracle数据库(一):配置篇"></a>cx_Oracle操作Oracle数据库(一):配置篇</h1><hr>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">mrilboom</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">welcome to mrilboom's world</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#cx-Oracle%E6%93%8D%E4%BD%9COracle%E6%95%B0%E6%8D%AE%E5%BA%93-%E4%B8%80-%E9%85%8D%E7%BD%AE%E7%AF%87"><span class="nav-number">1.</span> <span class="nav-text">cx_Oracle操作Oracle数据库(一):配置篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cx-Oracle-%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.1.</span> <span class="nav-text">cx_Oracle 介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.1.</span> <span class="nav-text">结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#instant-client"><span class="nav-number">1.1.2.</span> <span class="nav-text">instant client</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cx-Oracle-%E5%AE%89%E8%A3%85"><span class="nav-number">1.2.</span> <span class="nav-text">cx_Oracle 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8cx-Oracle%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">1.3.</span> <span class="nav-text">使用cx_Oracle连接数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%EF%BC%9A"><span class="nav-number">1.4.</span> <span class="nav-text">附一些常见错误：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DPI-1047%EF%BC%9A%E8%BF%99%E4%B8%80%E7%B1%BB%E6%8A%A5%E9%94%99%E9%80%9A%E5%B8%B8%E6%98%AFcx-oracle%E4%B8%80%E4%BA%9B%E6%9C%AC%E5%9C%B0%E7%9A%84%E9%85%8D%E7%BD%AE%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.4.1.</span> <span class="nav-text">DPI-1047：这一类报错通常是cx_oracle一些本地的配置的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ORA-12514%EF%BC%9A%E8%BF%99%E4%B8%80%E7%B1%BB%E6%8A%A5%E9%94%99%E9%80%9A%E5%B8%B8%E6%98%AF%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%8D%E5%8A%A1%E6%96%B9%E9%9D%A2%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.4.2.</span> <span class="nav-text">ORA-12514：这一类报错通常是数据库服务方面的问题</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="mrilboom"
+      src="/images/Lute.jpg">
+  <p class="site-author-name" itemprop="name">mrilboom</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mrilboom" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;mrilboom" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:mrilboom@qq.com" title="E-Mail → mailto:mrilboom@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh_CN">
+    <link itemprop="mainEntityOfPage" href="https://mrilboom.github.io/2021/08/30/cx_Oracle_1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Lute.jpg">
+      <meta itemprop="name" content="mrilboom">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mrilboom">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          cx_Oracle操作Oracle数据库
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-08-30 10:46:51" itemprop="dateCreated datePublished" datetime="2021-08-30T10:46:51+08:00">2021-08-30</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-08-31 10:32:43" itemprop="dateModified" datetime="2021-08-31T10:32:43+08:00">2021-08-31</time>
+      </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="cx-Oracle操作Oracle数据库-一-配置篇"><a href="#cx-Oracle操作Oracle数据库-一-配置篇" class="headerlink" title="cx_Oracle操作Oracle数据库(一):配置篇"></a>cx_Oracle操作Oracle数据库(一):配置篇</h1><hr>
 <p>&emsp;&emsp;前不久刚找到了第一份实习工作,刚进公司搞不了啥东西,也就熟悉一下环境,于是导师就给了我一份解析excel数据的活干.要求是将远程服务器中的数据拉到本地,并用python将数据进行解析,然后存入Oracle数据库中.网上查了一下,看上去使用最多的就是cx_Oracle这个库了,cx_Oracle配置起来较为复杂,刚开始的时候弄了半天才弄好  </p>
 <h2 id="cx-Oracle-介绍"><a href="#cx-Oracle-介绍" class="headerlink" title="cx_Oracle 介绍"></a>cx_Oracle 介绍</h2><hr>
 <p>详细信息请参阅<a target="_blank" rel="noopener" href="https://cx-oracle.readthedocs.io/en/latest/"><font color="lightblue">cx_Oracle官方文档</font></a></p>
 <hr>
-<p>&emsp;&emsp;cx_Oracle是一个Python扩展模块,支持Python访问Oracle数据库它.</p>
+<p>&emsp;&emsp;cx_Oracle是一个Python扩展模块,支持Python访问Oracle数据库.</p>
 <h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><p>&emsp;&emsp;该拓展模块大致的结构如下图  </p>
 <img src="/2021/08/30/cx_Oracle_1/cx_Oracle_arch.png" class title="cx_Oracle_arch">  
-<p>&emsp;&emsp;开发者通过编写python程序来调用cx_Oracle模块,而cx_Oracle在内部动态加载 Oracle 客户端库以访问 Oracle 数据库,数据库可以在本地,也可以在远程服务器.<br>&emsp;&emsp;由此可以看出,要想通过cx_Oracle操控Oracle数据库,那就必须用到Oracle的客户端.</p>
-<h3 id="instant-client"><a href="#instant-client" class="headerlink" title="instant client"></a>instant client</h3><p>&emsp;&emsp;客户端一般使用<a target="_blank" rel="noopener" href="https://www.oracle.com/database/technologies/instant-client/downloads.html"><font color="lightblue">oracle instant client</font></a>,注意选的时候不要选错了版本.cx_Oracle在进行操作时只需要用到oracle客户端中的一些库,因此选择Basic Light进行下载即可,下载完后解压,之后将文件夹路径添加到系统变量中即可.</p>
+<p>&emsp;&emsp;开发者通过编写python程序来调用cx_Oracle模块,而cx_Oracle在内部动态加载 Oracle 客户端库以访问 Oracle 数据库,连接的数据库可以在本地,也可以在远程服务器.<br>&emsp;&emsp;图中与Oracle数据库真正进行通信连接的是最下方的Oracle client libraries，也就是oracle客户端的一些库，由此可以看出,要想通过cx_Oracle操控Oracle数据库,仅仅安装cx_Oracle这个模块是不够的，必须用到Oracle的客户端.</p>
+<h3 id="instant-client"><a href="#instant-client" class="headerlink" title="instant client"></a>instant client</h3><p>&emsp;&emsp;客户端一般使用<a target="_blank" rel="noopener" href="https://www.oracle.com/database/technologies/instant-client/downloads.html"><font color="lightblue">oracle instant client</font></a>,cx_Oracle在进行操作时只需要用到oracle客户端中的一些库,因此选择Basic Light进行下载即可,注意选的时候不要选错了版本，版本选择最新的就好,以Windows.x64为例，选择此项，高版本的向下一般都可以兼容.  </p>
+<img src="/2021/08/30/cx_Oracle_1/download.png" class>
+
+<p>下载完后解压,之后将文件夹路径添加到系统变量中即可完成oracle client的准备.</p>
 <h2 id="cx-Oracle-安装"><a href="#cx-Oracle-安装" class="headerlink" title="cx_Oracle 安装"></a>cx_Oracle 安装</h2><p><em>注意:文章中使用的版本为 <font color="lightblue"><strong>python3.6+</strong></font></em><br>&emsp;&emsp;由于本人python脚本的编写是在pycharm中进行的,因此直接通过GUI添加了cx_Oracle这个模块,如果是命令行,则可以用</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install cx-oracle</span><br></pre></td></tr></table></figure>
-<p>来进行安装.如果安装失败,很有可能是网络原因,可以选择换源或者<a target="_blank" rel="noopener" href="https://pypi.org/project/cx-Oracle/#files"><font color="lightblue">下载离线包</font></a>来安装</p>
+<p>来进行安装.如果安装失败,很有可能是网络原因,可以选择换pip镜像源或者<a target="_blank" rel="noopener" href="https://pypi.org/project/cx-Oracle/#files"><font color="lightblue">下载离线包</font></a>来安装</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#转移到存放下载好的模块的地方</span></span><br><span class="line"><span class="built_in">cd</span> .../modules/</span><br><span class="line">pip3 install cx_Oracle-8.2.1-cp36-cp36m-manylinux1_x86_64.whl</span><br></pre></td></tr></table></figure>
 
-<h2 id="使用cx-Oracle连接数据库"><a href="#使用cx-Oracle连接数据库" class="headerlink" title="使用cx_Oracle连接数据库"></a>使用cx_Oracle连接数据库</h2><p>安装完cx_Oracle库之后即可开始使用cx_Oracle操作数据库  </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cx_Oracle</span><br><span class="line">DB = <span class="string">&#x27;username/password@ip:port/SERVICE_NAME&#x27;</span></span><br><span class="line">conn = cx_Oracle.connect(DB)</span><br><span class="line">sql = <span class="string">&#x27;select 1+1 from dual&#x27;</span></span><br><span class="line">result = conn.execute(sql).fetchall()</span><br><span class="line"><span class="built_in">print</span>(result[<span class="number">0</span>][<span class="number">0</span>])</span><br><span class="line"><span class="comment"># 2</span></span><br></pre></td></tr></table></figure>
+<h2 id="使用cx-Oracle连接数据库"><a href="#使用cx-Oracle连接数据库" class="headerlink" title="使用cx_Oracle连接数据库"></a>使用cx_Oracle连接数据库</h2><p>安装完cx_Oracle库之后即可开始使用cx_Oracle操作数据库  ，下面是一个最简易的cx_Oracle连接数据库的方式。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cx_Oracle</span><br><span class="line">DB = <span class="string">&#x27;username/password@ip:port/SERVICE_NAME&#x27;</span></span><br><span class="line">conn = cx_Oracle.connect(DB)</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    sql = <span class="string">&quot;select to_char(sysdate,&#x27;yyyy-mm-dd hh24:mi:ss&#x27;) from dual&quot;</span></span><br><span class="line">    <span class="keyword">with</span> conn.cursor() <span class="keyword">as</span> cur:</span><br><span class="line">        result = cur.execute(sql).fetchall()</span><br><span class="line">    <span class="built_in">print</span>(result[<span class="number">0</span>][<span class="number">0</span>])</span><br><span class="line">    <span class="comment">#2021-08-31 09:47:16</span></span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    conn.close()</span><br></pre></td></tr></table></figure>
 
-<p>由此验证数据库连接无误</p>
-<h2 id="附一些常见错误："><a href="#附一些常见错误：" class="headerlink" title="附一些常见错误："></a>附一些常见错误：</h2><h3 id="DPI-1047"><a href="#DPI-1047" class="headerlink" title="DPI-1047"></a>DPI-1047</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cx_Oracle.DatabaseError: DPI-1047: Cannot locate a 64-bit Oracle Client library: <span class="string">&quot;The specified module could not be found&quot;</span></span><br></pre></td></tr></table></figure>
+<p>如果配置无误，最后数据库会成功返回当前的日期时间.</p>
+<p>如果环境变量中配置过数据库的TNS_ADMIN路径并配置好了tnsnames.ora文件，就可以通过如下方式连接:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#tnsnames.ora文件配置示例</span></span><br><span class="line">mydb =</span><br><span class="line">  (DESCRIPTION =</span><br><span class="line">    (ADDRESS_LIST =</span><br><span class="line">      (ADDRESS = (PROTOCOL = TCP)(HOST = x.x.x.x)(PORT = 1521))</span><br><span class="line">    )</span><br><span class="line">    (CONNECT_DATA =</span><br><span class="line">      (SERVICE_NAME = orcl)</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">  </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">connection = cx_Oracle.connect(user=user, password=userpwd, dsn=<span class="string">&quot;mydb&quot;</span>,</span><br><span class="line">                               encoding=<span class="string">&quot;UTF-8&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>只需要配置用户名和密码即可进行连接。</p>
+<h2 id="附一些常见错误："><a href="#附一些常见错误：" class="headerlink" title="附一些常见错误："></a>附一些常见错误：</h2><h3 id="DPI-1047：这一类报错通常是cx-oracle一些本地的配置的问题"><a href="#DPI-1047：这一类报错通常是cx-oracle一些本地的配置的问题" class="headerlink" title="DPI-1047：这一类报错通常是cx_oracle一些本地的配置的问题"></a>DPI-1047：这一类报错通常是cx_oracle一些本地的配置的问题</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cx_Oracle.DatabaseError: DPI-1047: Cannot locate a 64-bit Oracle Client library: <span class="string">&quot;The specified module could not be found&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p><strong>原因</strong> </p>
 <ul>
@@ -180,9 +326,9 @@
 <ul>
 <li>Windows:<br>  PATH中添加…\instantclient_11_2文件夹即可</li>
 <li>Linux:<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#永久将该路径存入系统变量中</span></span><br><span class="line">sudo sh -c <span class="string">&quot;echo /opt/oracle/instantclient_21_1 &gt; /etc/ld.so.conf.d/oracle-instantclient.conf&quot;</span>  </span><br><span class="line">sudo ldconfig</span><br></pre></td></tr></table></figure>
-否则就重新下载位数匹配的客户端客户端再次进行尝试.  </li>
+如果是版本不匹配，那么就重新下载位数匹配的客户端客户端再次进行尝试.  </li>
 </ul>
-<h3 id="ORA-12514"><a href="#ORA-12514" class="headerlink" title="ORA-12514"></a>ORA-12514</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cx_Oracle.DatabaseError: ORA-12514: TNS:listener does not currently know of service requested <span class="keyword">in</span> connect descriptor</span><br></pre></td></tr></table></figure>
+<h3 id="ORA-12514：这一类报错通常是数据库服务方面的问题"><a href="#ORA-12514：这一类报错通常是数据库服务方面的问题" class="headerlink" title="ORA-12514：这一类报错通常是数据库服务方面的问题"></a>ORA-12514：这一类报错通常是数据库服务方面的问题</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cx_Oracle.DatabaseError: ORA-12514: TNS:listener does not currently know of service requested <span class="keyword">in</span> connect descriptor</span><br></pre></td></tr></table></figure>
 
 <p><strong>原因</strong> </p>
 <ul>
@@ -190,139 +336,116 @@
 </ul>
 <p><strong>解决方法</strong>  </p>
 <ul>
-<li>修改Oracle连接的服务名(一般为 <em>orcl</em> )</li>
-</ul>
-
-  </div>
-</article>
+<li><p>修改Oracle连接的服务名，服务名可以通过oracle命令行查询</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SQL</span><span class="operator">&gt;</span> <span class="keyword">SHOW</span> <span class="keyword">PARAMETER</span> service_names</span><br><span class="line">NAME                                 TYPE        <span class="keyword">VALUE</span></span><br><span class="line"><span class="comment">------------------------------------ ----------- ------------------------------</span></span><br><span class="line">service_names                        string      orcl</span><br></pre></td></tr></table></figure>
 
 
 
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-         
-          <li><a href="/">首页</a></li>
-         
-          <li><a href="/about/">关于</a></li>
-         
-          <li><a href="/tags/">标签</a></li>
-        
-      </ul>
-    </div>
-
-    <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#cx-Oracle%E6%93%8D%E4%BD%9COracle%E6%95%B0%E6%8D%AE%E5%BA%93-%E4%B8%80-%E9%85%8D%E7%BD%AE%E7%AF%87"><span class="toc-number">1.</span> <span class="toc-text">cx_Oracle操作Oracle数据库(一):配置篇</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#cx-Oracle-%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.</span> <span class="toc-text">cx_Oracle 介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.1.</span> <span class="toc-text">结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#instant-client"><span class="toc-number">1.1.2.</span> <span class="toc-text">instant client</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cx-Oracle-%E5%AE%89%E8%A3%85"><span class="toc-number">1.2.</span> <span class="toc-text">cx_Oracle 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8cx-Oracle%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.3.</span> <span class="toc-text">使用cx_Oracle连接数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%EF%BC%9A"><span class="toc-number">1.4.</span> <span class="toc-text">附一些常见错误：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DPI-1047"><span class="toc-number">1.4.1.</span> <span class="toc-text">DPI-1047</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ORA-12514"><span class="toc-number">1.4.2.</span> <span class="toc-text">ORA-12514</span></a></li></ol></li></ol></li></ol>
-    </div>
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://mrilboom.github.io/2021/08/30/cx_Oracle_1/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://mrilboom.github.io/2021/08/30/cx_Oracle_1/&text=cx_Oracle操作Oracle数据库"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://mrilboom.github.io/2021/08/30/cx_Oracle_1/&title=cx_Oracle操作Oracle数据库"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://mrilboom.github.io/2021/08/30/cx_Oracle_1/&is_video=false&description=cx_Oracle操作Oracle数据库"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=cx_Oracle操作Oracle数据库&body=Check out this article: https://mrilboom.github.io/2021/08/30/cx_Oracle_1/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://mrilboom.github.io/2021/08/30/cx_Oracle_1/&title=cx_Oracle操作Oracle数据库"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://mrilboom.github.io/2021/08/30/cx_Oracle_1/&title=cx_Oracle操作Oracle数据库"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://mrilboom.github.io/2021/08/30/cx_Oracle_1/&title=cx_Oracle操作Oracle数据库"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://mrilboom.github.io/2021/08/30/cx_Oracle_1/&title=cx_Oracle操作Oracle数据库"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://mrilboom.github.io/2021/08/30/cx_Oracle_1/&name=cx_Oracle操作Oracle数据库&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://mrilboom.github.io/2021/08/30/cx_Oracle_1/&t=cx_Oracle操作Oracle数据库"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+<p>可以看到这里服务名就是orcl(一般默认服务名即为orcl).修改后应该就可以成功连接了.</p>
+</li>
 </ul>
 
     </div>
 
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
-        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
-    </div>
+    
+    
+    
 
-  </div>
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"># python</a>
+              <a href="/tags/Oracle/" rel="tag"># Oracle</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/08/28/SSHkey/" rel="prev" title="ssh密钥验证那些事">
+                  <i class="fa fa-chevron-left"></i> ssh密钥验证那些事
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
 </div>
 
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2021
-    mrilboom
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-         
-          <li><a href="/">首页</a></li>
-         
-          <li><a href="/about/">关于</a></li>
-         
-          <li><a href="/tags/">标签</a></li>
-        
-      </ul>
-    </nav>
-  </div>
-</footer>
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mrilboom</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">5k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">9 分钟</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">powered py <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 
+  </div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
 
     </div>
-    <!-- styles -->
-
-
-
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
- 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
-
-
-
-
-<!-- clipboard -->
+  </footer>
 
   
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
   
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
-    btn += '<i class="far fa-clone"></i>';
-    btn += '</span>'; 
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "复制成功!");
-      e.clearSelection();
-    })
-  })
-  </script>
+<script src="/js/third-party/search/local-search.js"></script>
 
 
-<script src="/js/main.js"></script>
 
-<!-- search -->
 
-<!-- Google Analytics -->
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-<!-- Baidu Analytics -->
 
-<!-- Cloudflare Analytics -->
 
-<!-- Umami Analytics -->
-
-<!-- Disqus Comments -->
 
 
 </body>
