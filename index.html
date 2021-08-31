@@ -157,7 +157,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -210,6 +210,93 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://mrilboom.github.io/2021/08/31/cx-Oracle-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Lute.jpg">
+      <meta itemprop="name" content="mrilboom">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mrilboom">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/08/31/cx-Oracle-2/" class="post-title-link" itemprop="url">cx_Oracle操作Oracle数据库(二):代码篇</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-08-31 16:02:09 / 修改时间：16:21:40" itemprop="dateCreated datePublished" datetime="2021-08-31T16:02:09+08:00">2021-08-31</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>71</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>&emsp;&emsp;<a href="/2021/08/30/cx_Oracle_1/" title="上一篇">上一篇</a>讲了cx_Oracle的安装以及相关的环境配置,本篇就来讲讲cx_Oracle这个模块的具体使用方法.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/08/31/cx-Oracle-2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://mrilboom.github.io/2021/08/30/cx_Oracle_1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -223,7 +310,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/08/30/cx_Oracle_1/" class="post-title-link" itemprop="url">cx_Oracle操作Oracle数据库</a>
+          <a href="/2021/08/30/cx_Oracle_1/" class="post-title-link" itemprop="url">cx_Oracle操作Oracle数据库(一):配置篇</a>
         </h2>
 
         <div class="post-meta-container">
@@ -241,7 +328,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-31 15:45:35" itemprop="dateModified" datetime="2021-08-31T15:45:35+08:00">2021-08-31</time>
+        <time title="修改时间：2021-08-31 17:18:31" itemprop="dateModified" datetime="2021-08-31T17:18:31+08:00">2021-08-31</time>
       </span>
 
   
@@ -269,8 +356,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="cx-Oracle操作Oracle数据库-一-配置篇"><a href="#cx-Oracle操作Oracle数据库-一-配置篇" class="headerlink" title="cx_Oracle操作Oracle数据库(一):配置篇"></a>cx_Oracle操作Oracle数据库(一):配置篇</h1><hr>
-<p>&emsp;&emsp;前不久刚找到了第一份实习工作,刚进公司搞不了啥东西,也就熟悉一下环境,于是导师就给了我一份解析excel数据的活干.要求是将远程服务器中的数据拉到本地,并用python将数据进行解析,然后存入Oracle数据库中.网上查了一下,看上去使用最多的就是cx_Oracle这个库了,cx_Oracle配置起来较为复杂,刚开始的时候弄了半天才弄好</p>
+          <hr>
+<p>&emsp;&emsp;前不久刚找到了第一份实习工作,刚进公司搞不了啥东西,也就熟悉一下环境,于是导师就给了我一份解析excel数据的活干.要求是将远程服务器中的数据拉到本地,并用python将数据进行解析,然后存入Oracle数据库中.网上查了一下,看上去使用最多的就是cx_Oracle这个库了,cx_Oracle配置起来较为复杂,刚开始的时候弄了半天才弄好.</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/08/30/cx_Oracle_1/#more" rel="contents">
@@ -335,7 +422,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-31 15:47:23" itemprop="dateModified" datetime="2021-08-31T15:47:23+08:00">2021-08-31</time>
+        <time title="修改时间：2021-08-31 16:24:09" itemprop="dateModified" datetime="2021-08-31T16:24:09+08:00">2021-08-31</time>
       </span>
 
   
@@ -363,7 +450,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="ssh-密钥验证的介绍以及密钥的添加方法"><a href="#ssh-密钥验证的介绍以及密钥的添加方法" class="headerlink" title="ssh 密钥验证的介绍以及密钥的添加方法"></a>ssh 密钥验证的介绍以及密钥的添加方法</h1><hr>
+          <hr>
 <p>&emsp;&emsp;第一次接触到ssh密钥还是我在捣鼓树莓派的时候，当时拿着我的树莓派PI4B在搞项目，做一些IoT之类的小系统.当时需要上传各种驱动和相关代码进行测试，单纯的命令行进行ssh连接肯定会比较麻烦，但又感觉像<a target="_blank" rel="noopener" href="https://www.chiark.greenend.org.uk/~sgtatham/putty/">putty</a>、<a target="_blank" rel="noopener" href="https://mobaxterm.mobatek.net/">MobaXterm</a>这类的又不够美观，于是就选择了Vscode来作为IDE，它里面的remote-ssh插件可以很方便的与linux服务器进行ssh连接，只需要配置好.config文件就可以进行连接了.但是有一个问题，每次连树莓派的时候我就都得输一次密码，有时候一不小心关了终端什么的，又得重新开一遍，挺麻烦的，于是就在网上找有没有什么方法可以让vscode记录密码自动登录或者可以避开密码验证什么的，然后我就找到了这个叫做SSH key 的东西.</p>
           <!--noindex-->
             <div class="post-button">

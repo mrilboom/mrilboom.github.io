@@ -20,12 +20,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"mrilboom.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.7.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/./public/search.xml","localsearch":{"enable":"auto","trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="ssh 密钥验证的介绍以及密钥的添加方法 &amp;emsp;&amp;emsp;第一次接触到ssh密钥还是我在捣鼓树莓派的时候，当时拿着我的树莓派PI4B在搞项目，做一些IoT之类的小系统.当时需要上传各种驱动和相关代码进行测试，单纯的命令行进行ssh连接肯定会比较麻烦，但又感觉像putty、MobaXterm这类的又不够美观，于是就选择了Vscode来作为IDE，它里面的remote-ssh插件可以很方便的与">
+<meta name="description" content="&amp;emsp;&amp;emsp;第一次接触到ssh密钥还是我在捣鼓树莓派的时候，当时拿着我的树莓派PI4B在搞项目，做一些IoT之类的小系统.当时需要上传各种驱动和相关代码进行测试，单纯的命令行进行ssh连接肯定会比较麻烦，但又感觉像putty、MobaXterm这类的又不够美观，于是就选择了Vscode来作为IDE，它里面的remote-ssh插件可以很方便的与linux服务器进行ssh连接，只需要配">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ssh密钥验证那些事">
 <meta property="og:url" content="https://mrilboom.github.io/2021/08/28/SSHkey/index.html">
 <meta property="og:site_name" content="mrilboom">
-<meta property="og:description" content="ssh 密钥验证的介绍以及密钥的添加方法 &amp;emsp;&amp;emsp;第一次接触到ssh密钥还是我在捣鼓树莓派的时候，当时拿着我的树莓派PI4B在搞项目，做一些IoT之类的小系统.当时需要上传各种驱动和相关代码进行测试，单纯的命令行进行ssh连接肯定会比较麻烦，但又感觉像putty、MobaXterm这类的又不够美观，于是就选择了Vscode来作为IDE，它里面的remote-ssh插件可以很方便的与">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;第一次接触到ssh密钥还是我在捣鼓树莓派的时候，当时拿着我的树莓派PI4B在搞项目，做一些IoT之类的小系统.当时需要上传各种驱动和相关代码进行测试，单纯的命令行进行ssh连接肯定会比较麻烦，但又感觉像putty、MobaXterm这类的又不够美观，于是就选择了Vscode来作为IDE，它里面的remote-ssh插件可以很方便的与linux服务器进行ssh连接，只需要配">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://mrilboom.github.io/2021/08/28/SSHkey/wiki.png">
 <meta property="og:image" content="https://mrilboom.github.io/2021/08/28/SSHkey/sshkey.png">
@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://mrilboom.github.io/2021/08/28/SSHkey/addkey.png">
 <meta property="og:image" content="https://mrilboom.github.io/2021/08/28/SSHkey/addnew.png">
 <meta property="article:published_time" content="2021-08-27T17:16:12.000Z">
-<meta property="article:modified_time" content="2021-08-31T07:47:23.857Z">
+<meta property="article:modified_time" content="2021-08-31T08:24:09.642Z">
 <meta property="article:author" content="mrilboom">
 <meta property="article:tag" content="linux">
 <meta property="article:tag" content="ssh">
@@ -154,7 +154,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ssh-%E5%AF%86%E9%92%A5%E9%AA%8C%E8%AF%81%E7%9A%84%E4%BB%8B%E7%BB%8D%E4%BB%A5%E5%8F%8A%E5%AF%86%E9%92%A5%E7%9A%84%E6%B7%BB%E5%8A%A0%E6%96%B9%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">ssh 密钥验证的介绍以及密钥的添加方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH-key%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.1.</span> <span class="nav-text">SSH key简单介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH-key%E4%BD%BF%E7%94%A8"><span class="nav-number">1.2.</span> <span class="nav-text">SSH key使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#github-SSH-key%E6%B7%BB%E5%8A%A0%E6%96%B9%E5%BC%8F"><span class="nav-number">1.3.</span> <span class="nav-text">github SSH key添加方式</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH-key%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">SSH key简单介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH-key%E4%BD%BF%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">SSH key使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#github-SSH-key%E6%B7%BB%E5%8A%A0%E6%96%B9%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">github SSH key添加方式</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -170,7 +170,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -255,7 +255,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-31 15:47:23" itemprop="dateModified" datetime="2021-08-31T15:47:23+08:00">2021-08-31</time>
+        <time title="修改时间：2021-08-31 16:24:09" itemprop="dateModified" datetime="2021-08-31T16:24:09+08:00">2021-08-31</time>
       </span>
 
   
@@ -290,7 +290,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="ssh-密钥验证的介绍以及密钥的添加方法"><a href="#ssh-密钥验证的介绍以及密钥的添加方法" class="headerlink" title="ssh 密钥验证的介绍以及密钥的添加方法"></a>ssh 密钥验证的介绍以及密钥的添加方法</h1><hr>
+        <hr>
 <p>&emsp;&emsp;第一次接触到ssh密钥还是我在捣鼓树莓派的时候，当时拿着我的树莓派PI4B在搞项目，做一些IoT之类的小系统.当时需要上传各种驱动和相关代码进行测试，单纯的命令行进行ssh连接肯定会比较麻烦，但又感觉像<a target="_blank" rel="noopener" href="https://www.chiark.greenend.org.uk/~sgtatham/putty/">putty</a>、<a target="_blank" rel="noopener" href="https://mobaxterm.mobatek.net/">MobaXterm</a>这类的又不够美观，于是就选择了Vscode来作为IDE，它里面的remote-ssh插件可以很方便的与linux服务器进行ssh连接，只需要配置好.config文件就可以进行连接了.但是有一个问题，每次连树莓派的时候我就都得输一次密码，有时候一不小心关了终端什么的，又得重新开一遍，挺麻烦的，于是就在网上找有没有什么方法可以让vscode记录密码自动登录或者可以避开密码验证什么的，然后我就找到了这个叫做SSH key 的东西.<span id="more"></span>  </p>
 <hr>
 <h2 id="SSH-key简单介绍"><a href="#SSH-key简单介绍" class="headerlink" title="SSH key简单介绍"></a>SSH key简单介绍</h2><p>&emsp;&emsp;通常我们进行SSH远程连接服务器是指定一个用户，然后再输入其密码，由服务器进行验证通过之后即可建立连接.<br>&emsp;&emsp;SSH key的验证方法有一些不同，它会同时产生两个密码(密钥)，其中一个被称作公钥，另一个被称作私钥.公钥，顾名思义，就是可以公开的密钥，交由服务器保管作为加密密钥和凭证，而私钥则是自己需要秘密保管的密钥.<br>&emsp;&emsp;SSH key采用了一种叫做”<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/1208652?fr=aladdin">非对称加密</a>“的方式进行通信加密  </p>
@@ -338,8 +338,8 @@
             <div class="post-nav-item">
             </div>
             <div class="post-nav-item">
-                <a href="/2021/08/30/cx_Oracle_1/" rel="next" title="cx_Oracle操作Oracle数据库">
-                  cx_Oracle操作Oracle数据库 <i class="fa fa-chevron-right"></i>
+                <a href="/2021/08/30/cx_Oracle_1/" rel="next" title="cx_Oracle操作Oracle数据库(一):配置篇">
+                  cx_Oracle操作Oracle数据库(一):配置篇 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
