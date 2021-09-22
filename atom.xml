@@ -6,7 +6,7 @@
   <link href="https://mrilboom.github.io/atom.xml" rel="self"/>
   
   <link href="https://mrilboom.github.io/"/>
-  <updated>2021-09-22T06:56:59.597Z</updated>
+  <updated>2021-09-22T08:19:15.479Z</updated>
   <id>https://mrilboom.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Pl/SQL 学习笔记</title>
+    <link href="https://mrilboom.github.io/2021/09/22/learnPlsql/"/>
+    <id>https://mrilboom.github.io/2021/09/22/learnPlsql/</id>
+    <published>2021-09-22T07:03:39.000Z</published>
+    <updated>2021-09-22T08:19:15.479Z</updated>
+    
+    <content type="html"><![CDATA[<hr><!-- 简介 --> <span id="more"></span><hr><h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><p>plsql：个人理解就是原来的sql语句局限性太高，不能实现一些自动化的处理过程，于是就推出了PL/SQL(Procedure Language &amp; Structured Query Language，过程化SQL语言)，在原先的一些普通sql语句的基础中上加入了流程控制语句，如while、if 等循环或者逻辑语句，这使得sql能够进行一些复杂的流程处理，能够写出一些自动化脚本以供使用。</p><p>plsql语言总体结构：</p><ul><li><a href="#%E5%A3%B0%E6%98%8E%E9%83%A8%E5%88%86(DECLARE)">声明部分</a>（DECLARE）</li><li><a href="#%E6%89%A7%E8%A1%8C%E9%83%A8%E5%88%86%EF%BC%88BEGIN...END%EF%BC%89">执行部分</a>（BEGIN…END）</li><li>异常处理部分（EXCEPTION）</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">DECLARE(Optional) ...</span><br><span class="line">BEGIN(Required) ...</span><br><span class="line">EXCEPTION(Optional) ...</span><br><span class="line">END;</span><br></pre></td></tr></table></figure><h2 id="声明部分-DECLARE"><a href="#声明部分-DECLARE" class="headerlink" title="声明部分(DECLARE)"></a>声明部分(DECLARE)</h2><p>PL/SQL中的声明部分是可选的，一般用来进行定义类型和变量、声明变量、声明函数、游标等操作。</p><p>比较基本的用法: </p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">DECLARE</span><br><span class="line">     i NUMBER(4) := 157;</span><br><span class="line">     j NUMBER(6);</span><br><span class="line">     c VARCHAR2(200) := &#x27;HELLO,WORLD&#x27;; </span><br><span class="line">     d DATE := sysdate; </span><br><span class="line">     b BOOLEAN := TRUE;</span><br><span class="line">BEGIN</span><br><span class="line">...</span><br><span class="line">END;</span><br></pre></td></tr></table></figure><p>在声明的时候就可以直接对变量进行赋值，在plsql中，赋值操作为<code>:=</code>，如果声明时没有进行赋值，则赋值操作只能在执行部分进行处理。</p><p>进一步的操作，在需要循环取数据库中记录时可能会用到：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">DECLARE</span><br><span class="line">i emp%rowtype;</span><br><span class="line">j emp.ename%type;</span><br><span class="line">BEGIN</span><br><span class="line">...</span><br><span class="line">END;</span><br></pre></td></tr></table></figure><p>上面的例子中，i 被定义为了emp表中的数据行的数据类型，一个 i 的值就是一条记录，j 被定义为 emp 表中的 ename 的类型，即 j 的类型与 emp 中 ename 栏相同。</p><h2 id="执行部分（BEGIN…END）"><a href="#执行部分（BEGIN…END）" class="headerlink" title="执行部分（BEGIN…END）"></a>执行部分（BEGIN…END）</h2><p>这一块是每一个plsql过程中必须要有的部分，在这里可以进行最重要的流程控制操作。</p><p><font size="4" face="幼圆" color="lightblue">to be continue···</font></p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://blog.csdn.net/qq_34741755/article/details/81279698">where are you ぃ | pl/sql编程</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;hr&gt;
+&lt;!-- 简介 --&gt;</summary>
+    
+    
+    
+    
+    <category term="Oracle" scheme="https://mrilboom.github.io/tags/Oracle/"/>
+    
+    <category term="PL/SQL" scheme="https://mrilboom.github.io/tags/PL-SQL/"/>
+    
+  </entry>
   
   <entry>
     <title>Oracle SQL高级编程阅读笔记</title>

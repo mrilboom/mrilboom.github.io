@@ -20,24 +20,27 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"mrilboom.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.7.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":260},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":null}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/./public/search.xml","localsearch":{"enable":"auto","trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta property="og:type" content="website">
-<meta property="og:title" content="mrilboom">
-<meta property="og:url" content="https://mrilboom.github.io/archives/2021/08/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pl&#x2F;SQL 学习笔记">
+<meta property="og:url" content="https://mrilboom.github.io/2021/09/22/learnPlsql/index.html">
 <meta property="og:site_name" content="mrilboom">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-09-22T07:03:39.000Z">
+<meta property="article:modified_time" content="2021-09-22T08:19:15.479Z">
 <meta property="article:author" content="mrilboom">
-<meta property="article:tag" content="learn,mood">
+<meta property="article:tag" content="Oracle">
+<meta property="article:tag" content="PL&#x2F;SQL">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://mrilboom.github.io/archives/2021/08/">
+<link rel="canonical" href="https://mrilboom.github.io/2021/09/22/learnPlsql/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh_CN","comments":"","permalink":"","path":"archives/2021/08/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh_CN","comments":true,"permalink":"https://mrilboom.github.io/2021/09/22/learnPlsql/","path":"2021/09/22/learnPlsql/","title":"Pl/SQL 学习笔记"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>归档 | mrilboom</title>
+<title>Pl/SQL 学习笔记 | mrilboom</title>
   
 
   <script src="/js/third-party/analytics/baidu-analytics.js"></script>
@@ -134,7 +137,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -147,6 +150,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">标题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A3%B0%E6%98%8E%E9%83%A8%E5%88%86-DECLARE"><span class="nav-number">2.</span> <span class="nav-text">声明部分(DECLARE)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E9%83%A8%E5%88%86%EF%BC%88BEGIN%E2%80%A6END%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">执行部分（BEGIN…END）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -206,90 +210,168 @@
 </noscript>
 
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 7 篇日志。 继续努力。</span>
-      </div>
 
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh_CN">
+    <link itemprop="mainEntityOfPage" href="https://mrilboom.github.io/2021/09/22/learnPlsql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Lute.jpg">
+      <meta itemprop="name" content="mrilboom">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mrilboom">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Pl/SQL 学习笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
+
+      <time title="创建时间：2021-09-22 15:03:39 / 修改时间：16:19:15" itemprop="dateCreated datePublished" datetime="2021-09-22T15:03:39+08:00">2021-09-22</time>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2021/09/22/learnPlsql/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/2021/09/22/learnPlsql/" data-xid="/2021/09/22/learnPlsql/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>832</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <hr>
+<!-- 简介 --> <span id="more"></span>
+
+<hr>
+<h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><p>plsql：个人理解就是原来的sql语句局限性太高，不能实现一些自动化的处理过程，于是就推出了PL/SQL(Procedure Language &amp; Structured Query Language，过程化SQL语言)，在原先的一些普通sql语句的基础中上加入了流程控制语句，如while、if 等循环或者逻辑语句，这使得sql能够进行一些复杂的流程处理，能够写出一些自动化脚本以供使用。</p>
+<p>plsql语言总体结构：</p>
+<ul>
+<li><a href="#%E5%A3%B0%E6%98%8E%E9%83%A8%E5%88%86(DECLARE)">声明部分</a>（DECLARE）</li>
+<li><a href="#%E6%89%A7%E8%A1%8C%E9%83%A8%E5%88%86%EF%BC%88BEGIN...END%EF%BC%89">执行部分</a>（BEGIN…END）</li>
+<li>异常处理部分（EXCEPTION）</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">DECLARE(Optional) ...</span><br><span class="line">BEGIN(Required) ...</span><br><span class="line">EXCEPTION(Optional) ...</span><br><span class="line">END;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="声明部分-DECLARE"><a href="#声明部分-DECLARE" class="headerlink" title="声明部分(DECLARE)"></a>声明部分(DECLARE)</h2><p>PL/SQL中的声明部分是可选的，一般用来进行定义类型和变量、声明变量、声明函数、游标等操作。</p>
+<p>比较基本的用法: </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">DECLARE</span><br><span class="line">     i NUMBER(4) := 157;</span><br><span class="line">     j NUMBER(6);</span><br><span class="line">     c VARCHAR2(200) := &#x27;HELLO,WORLD&#x27;; </span><br><span class="line">     d DATE := sysdate; </span><br><span class="line">     b BOOLEAN := TRUE;</span><br><span class="line">BEGIN</span><br><span class="line">...</span><br><span class="line">END;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>在声明的时候就可以直接对变量进行赋值，在plsql中，赋值操作为<code>:=</code>，如果声明时没有进行赋值，则赋值操作只能在执行部分进行处理。</p>
+<p>进一步的操作，在需要循环取数据库中记录时可能会用到：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">DECLARE</span><br><span class="line">	i emp%rowtype;</span><br><span class="line">	j emp.ename%type;</span><br><span class="line">BEGIN</span><br><span class="line">...</span><br><span class="line">END;</span><br></pre></td></tr></table></figure>
+
+<p>上面的例子中，i 被定义为了emp表中的数据行的数据类型，一个 i 的值就是一条记录，j 被定义为 emp 表中的 ename 的类型，即 j 的类型与 emp 中 ename 栏相同。</p>
+<h2 id="执行部分（BEGIN…END）"><a href="#执行部分（BEGIN…END）" class="headerlink" title="执行部分（BEGIN…END）"></a>执行部分（BEGIN…END）</h2><p>这一块是每一个plsql过程中必须要有的部分，在这里可以进行最重要的流程控制操作。</p>
+<p><font size="4" face="幼圆" color="lightblue">to be continue···</font></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_34741755/article/details/81279698">where are you ぃ | pl/sql编程</a></p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-08-31T16:02:09+08:00"
-              content="2021-08-31">
-          08-31
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/08/31/cx_Oracle_2/" itemprop="url">
-            <span itemprop="name">cx_Oracle操作Oracle数据库(二):代码篇</span>
-          </a>
-      </div>
+    <footer class="post-footer"><div>
+    
+        <div style="font-family: monospace;text-align:center;color: #ca61ea;font-size:16px;">------ Everything Ends------</div>
+    
+</div>
+          
 
-      
-    </header>
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>mrilboom
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://mrilboom.github.io/2021/09/22/learnPlsql/" title="Pl&#x2F;SQL 学习笔记">https://mrilboom.github.io/2021/09/22/learnPlsql/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Oracle/" rel="tag"><i class="fa fa-tag"></i> Oracle</a>
+              <a href="/tags/PL-SQL/" rel="tag"><i class="fa fa-tag"></i> PL/SQL</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/09/17/learnOracle/" rel="prev" title="Oracle SQL高级编程阅读笔记">
+                  <i class="fa fa-chevron-left"></i> Oracle SQL高级编程阅读笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-08-30T10:46:51+08:00"
-              content="2021-08-30">
-          08-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/08/30/cx_Oracle_1/" itemprop="url">
-            <span itemprop="name">cx_Oracle操作Oracle数据库(一):配置篇</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-08-28T01:16:12+08:00"
-              content="2021-08-28">
-          08-28
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/08/28/SSHkey/" itemprop="url">
-            <span itemprop="name">ssh密钥验证那些事</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
+</div>
 
 
-    </div>
-  </div>
-  
-  
-  
 
+
+
+
+    <div class="comments" id="waline-comments"></div>
 </div>
   </main>
 
@@ -345,7 +427,7 @@
 
 
 
-<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://comment.mrilboom.love/","placeholder":"支持匿名提交哦（o´・ェ・｀o）","avatar":"retro","pageSize":10,"visitor":false,"comment_count":true,"requiredFields":[],"meta":["nick","mail","link"],"requiredMeta":[],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","dark":"body.darkmode--activated","el":"#waline-comments","path":"/archives/2021/08/"}</script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://comment.mrilboom.love/","placeholder":"支持匿名提交哦（o´・ェ・｀o）","avatar":"retro","pageSize":10,"visitor":false,"comment_count":true,"requiredFields":[],"meta":["nick","mail","link"],"requiredMeta":[],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","dark":"body.darkmode--activated","el":"#waline-comments","path":"/2021/09/22/learnPlsql/"}</script>
 <script>
 document.addEventListener('page:loaded', () => {
   NexT.utils.loadComments(CONFIG.waline.el).then(() => 
