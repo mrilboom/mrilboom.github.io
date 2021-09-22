@@ -20,13 +20,15 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"mrilboom.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.7.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":260},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":null}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/./public/search.xml","localsearch":{"enable":"auto","trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="&amp;emsp;&amp;emsp;普通的sql语句只能进行简单的查询和一些设置，单靠sql很难实现一些复杂的逻辑，正是因为原来的sql语句局限性太高，不能实现一些自动化的处理过程，于是就出现了了PL&#x2F;SQL(Procedure Language &amp; Structured Query Language，过程化SQL语言)，在原先的一些普通sql语句的基础中上加入了流程控制语句，如while、if 等">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Pl&#x2F;SQL 学习笔记">
 <meta property="og:url" content="https://mrilboom.github.io/2021/09/22/learnPlsql/index.html">
 <meta property="og:site_name" content="mrilboom">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;普通的sql语句只能进行简单的查询和一些设置，单靠sql很难实现一些复杂的逻辑，正是因为原来的sql语句局限性太高，不能实现一些自动化的处理过程，于是就出现了了PL&#x2F;SQL(Procedure Language &amp; Structured Query Language，过程化SQL语言)，在原先的一些普通sql语句的基础中上加入了流程控制语句，如while、if 等">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-09-22T07:03:39.000Z">
-<meta property="article:modified_time" content="2021-09-22T08:19:15.479Z">
+<meta property="article:modified_time" content="2021-09-22T08:45:09.194Z">
 <meta property="article:author" content="mrilboom">
 <meta property="article:tag" content="Oracle">
 <meta property="article:tag" content="PL&#x2F;SQL">
@@ -150,7 +152,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">标题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A3%B0%E6%98%8E%E9%83%A8%E5%88%86-DECLARE"><span class="nav-number">2.</span> <span class="nav-text">声明部分(DECLARE)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E9%83%A8%E5%88%86%EF%BC%88BEGIN%E2%80%A6END%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">执行部分（BEGIN…END）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PL-SQL-%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">PL&#x2F;SQL 结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A3%B0%E6%98%8E%E9%83%A8%E5%88%86-DECLARE"><span class="nav-number">2.</span> <span class="nav-text">声明部分(DECLARE)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E9%83%A8%E5%88%86%EF%BC%88BEGIN%E2%80%A6END%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">执行部分（BEGIN…END）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -246,7 +248,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2021-09-22 15:03:39 / 修改时间：16:19:15" itemprop="dateCreated datePublished" datetime="2021-09-22T15:03:39+08:00">2021-09-22</time>
+      <time title="创建时间：2021-09-22 15:03:39 / 修改时间：16:45:09" itemprop="dateCreated datePublished" datetime="2021-09-22T15:03:39+08:00">2021-09-22</time>
     </span>
 
   
@@ -270,7 +272,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>832</span>
+      <span>878</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -289,16 +291,14 @@
     
     <div class="post-body" itemprop="articleBody">
         <hr>
-<!-- 简介 --> <span id="more"></span>
-
+<p>&emsp;&emsp;普通的sql语句只能进行简单的查询和一些设置，单靠sql很难实现一些复杂的逻辑，正是因为原来的sql语句局限性太高，不能实现一些自动化的处理过程，于是就出现了了PL/SQL(Procedure Language &amp; Structured Query Language，过程化SQL语言)，在原先的一些普通sql语句的基础中上加入了流程控制语句，如while、if 等循环或者逻辑语句，这使得sql能够进行一些复杂的流程处理，能够写出一些自动化脚本以供使用。<span id="more"></span></p>
 <hr>
-<h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><p>plsql：个人理解就是原来的sql语句局限性太高，不能实现一些自动化的处理过程，于是就推出了PL/SQL(Procedure Language &amp; Structured Query Language，过程化SQL语言)，在原先的一些普通sql语句的基础中上加入了流程控制语句，如while、if 等循环或者逻辑语句，这使得sql能够进行一些复杂的流程处理，能够写出一些自动化脚本以供使用。</p>
-<p>plsql语言总体结构：</p>
-<ul>
+<h2 id="PL-SQL-结构"><a href="#PL-SQL-结构" class="headerlink" title="PL/SQL 结构"></a>PL/SQL 结构</h2><ul>
 <li><a href="#%E5%A3%B0%E6%98%8E%E9%83%A8%E5%88%86(DECLARE)">声明部分</a>（DECLARE）</li>
 <li><a href="#%E6%89%A7%E8%A1%8C%E9%83%A8%E5%88%86%EF%BC%88BEGIN...END%EF%BC%89">执行部分</a>（BEGIN…END）</li>
 <li>异常处理部分（EXCEPTION）</li>
 </ul>
+<p>总体结构如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">DECLARE(Optional) ...</span><br><span class="line">BEGIN(Required) ...</span><br><span class="line">EXCEPTION(Optional) ...</span><br><span class="line">END;</span><br></pre></td></tr></table></figure>
 
 
