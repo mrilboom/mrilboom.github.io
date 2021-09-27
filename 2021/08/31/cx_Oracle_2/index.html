@@ -171,7 +171,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -317,10 +317,10 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> conn.cursor() <span class="keyword">as</span> cur:</span><br><span class="line">    ...	<span class="comment"># cursor operation</span></span><br><span class="line">    ...</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h2 id="使用cx-Oracle"><a href="#使用cx-Oracle" class="headerlink" title="使用cx_Oracle"></a>使用cx_Oracle</h2><h3 id="使用使用cx-Oracle进行查询"><a href="#使用使用cx-Oracle进行查询" class="headerlink" title="使用使用cx_Oracle进行查询"></a>使用使用cx_Oracle进行查询</h3><p>执行完对应sql语句后,游标可以通过按行进行迭代来获取所要查询的数据.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> conn.cursor() <span class="keyword">as</span> cur:</span><br><span class="line">	<span class="keyword">for</span> row <span class="keyword">in</span> cur.execute(sql):</span><br><span class="line">        <span class="built_in">print</span>(row)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> conn.cursor() <span class="keyword">as</span> cur:</span><br><span class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> cur.execute(sql):</span><br><span class="line">        <span class="built_in">print</span>(row)</span><br></pre></td></tr></table></figure>
 
 <p>同时也可以通过游标对象的fetch()方法来获取数据:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> conn.cursor() <span class="keyword">as</span> cur:</span><br><span class="line">	cur = cur.execute(sql)</span><br><span class="line">	result = cur.fetchone()</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(result))</span><br><span class="line"><span class="comment"># &lt;class &#x27;tuple&#x27;&gt;</span></span><br><span class="line"><span class="built_in">print</span>(result)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> conn.cursor() <span class="keyword">as</span> cur:</span><br><span class="line">    cur = cur.execute(sql)</span><br><span class="line">    result = cur.fetchone()</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(result))</span><br><span class="line"><span class="comment"># &lt;class &#x27;tuple&#x27;&gt;</span></span><br><span class="line"><span class="built_in">print</span>(result)</span><br></pre></td></tr></table></figure>
 
 <p>&emsp;&emsp;这个方法首先通过游标<code>cursor.execute()</code>执行sql语句,之后通过<em>cursor</em> 的fetch方法来获取结果,通过打印输出可以看出执行语句获取的结果是以tuple元组的方式返回的,取到数据后就可以进行其他的操作了,而cur也随着代码执行结束自动销毁了.</p>
 <p>&emsp;&emsp;除了用<code>cursor.fetchone()</code>方法之外,还可以用<code>cursor.fetchall()``cursor.fetchmany(num_rows)</code>方法来获取对应行数的数据.</p>
@@ -457,13 +457,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">16k</span>
+    <span title="站点总字数">18k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">30 分钟</span>
+    <span title="站点阅读时长">32 分钟</span>
   </span>
 </div>
   <div class="powered-by">powered py <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 
