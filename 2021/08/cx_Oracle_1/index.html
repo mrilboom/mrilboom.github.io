@@ -20,12 +20,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"mrilboom.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.7.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":260},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":null}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/./public/search.xml","localsearch":{"enable":"auto","trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="&amp;emsp;&amp;emsp;前不久刚找到了第一份实习工作,刚进公司搞不了啥东西,也就熟悉一下环境,于是导师就给了我一份解析excel数据的活干.要求是将远程服务器中的数据拉到本地,并用python将数据进行解析,然后存入Oracle数据库中.网上查了一下,看上去使用最多的就是cx_Oracle这个库了,cx_Oracle配置起来较为复杂,刚开始的时候弄了半天才弄好.">
+<meta name="description" content="前不久刚找到了第一份实习工作,刚进公司搞不了啥东西,也就熟悉一下环境,于是导师就给了我一份解析excel数据的活干.要求是将远程服务器中的数据拉到本地,并用python将数据进行解析,然后存入Oracle数据库中.网上查了一下,看上去使用最多的就是cx_Oracle这个库了,cx_Oracle配置起来较为复杂,刚开始的时候弄了半天才弄好.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="cx_Oracle操作Oracle数据库(一):配置篇">
-<meta property="og:url" content="https://mrilboom.github.io/94ecfc893ac8/index.html">
+<meta property="og:url" content="https://mrilboom.github.io/2021/08/cx_Oracle_1/index.html">
 <meta property="og:site_name" content="mrilboom">
-<meta property="og:description" content="&amp;emsp;&amp;emsp;前不久刚找到了第一份实习工作,刚进公司搞不了啥东西,也就熟悉一下环境,于是导师就给了我一份解析excel数据的活干.要求是将远程服务器中的数据拉到本地,并用python将数据进行解析,然后存入Oracle数据库中.网上查了一下,看上去使用最多的就是cx_Oracle这个库了,cx_Oracle配置起来较为复杂,刚开始的时候弄了半天才弄好.">
+<meta property="og:description" content="前不久刚找到了第一份实习工作,刚进公司搞不了啥东西,也就熟悉一下环境,于是导师就给了我一份解析excel数据的活干.要求是将远程服务器中的数据拉到本地,并用python将数据进行解析,然后存入Oracle数据库中.网上查了一下,看上去使用最多的就是cx_Oracle这个库了,cx_Oracle配置起来较为复杂,刚开始的时候弄了半天才弄好.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://mrilboom.github.io/94ecfc893ac8/cx_Oracle_arch.png">
 <meta property="og:image" content="https://mrilboom.github.io/94ecfc893ac8/download.png">
@@ -38,11 +38,11 @@
 <meta name="twitter:image" content="https://mrilboom.github.io/94ecfc893ac8/cx_Oracle_arch.png">
 
 
-<link rel="canonical" href="https://mrilboom.github.io/94ecfc893ac8/">
+<link rel="canonical" href="https://mrilboom.github.io/2021/08/cx_Oracle_1/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh_CN","comments":true,"permalink":"https://mrilboom.github.io/94ecfc893ac8/","path":"94ecfc893ac8/","title":"cx_Oracle操作Oracle数据库(一):配置篇"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh_CN","comments":true,"permalink":"https://mrilboom.github.io/2021/08/cx_Oracle_1/","path":"2021/08/cx_Oracle_1/","title":"cx_Oracle操作Oracle数据库(一):配置篇"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>cx_Oracle操作Oracle数据库(一):配置篇 | mrilboom</title>
@@ -171,13 +171,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -226,7 +226,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh_CN">
-    <link itemprop="mainEntityOfPage" href="https://mrilboom.github.io/94ecfc893ac8/">
+    <link itemprop="mainEntityOfPage" href="https://mrilboom.github.io/2021/08/cx_Oracle_1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Lute.jpg">
@@ -269,8 +269,8 @@
     </span>
     <span class="post-meta-item-text">评论：</span>
   
-    <a title="waline" href="/94ecfc893ac8/#waline-comments" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" id="/94ecfc893ac8/" data-xid="/94ecfc893ac8/" itemprop="commentCount"></span>
+    <a title="waline" href="/2021/08/cx_Oracle_1/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/2021/08/cx_Oracle_1/" data-xid="/2021/08/cx_Oracle_1/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -281,14 +281,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.4k</span>
+      <span>1.3k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
+      <span>2 分钟</span>
     </span>
 </div>
 
@@ -300,61 +300,65 @@
     
     <div class="post-body" itemprop="articleBody">
         <hr>
-<p>&emsp;&emsp;前不久刚找到了第一份实习工作,刚进公司搞不了啥东西,也就熟悉一下环境,于是导师就给了我一份解析excel数据的活干.要求是将远程服务器中的数据拉到本地,并用python将数据进行解析,然后存入Oracle数据库中.网上查了一下,看上去使用最多的就是cx_Oracle这个库了,cx_Oracle配置起来较为复杂,刚开始的时候弄了半天才弄好.<span id="more"></span>  </p>
+<p>  前不久刚找到了第一份实习工作,刚进公司搞不了啥东西,也就熟悉一下环境,于是导师就给了我一份解析excel数据的活干.要求是将远程服务器中的数据拉到本地,并用python将数据进行解析,然后存入Oracle数据库中.网上查了一下,看上去使用最多的就是cx_Oracle这个库了,cx_Oracle配置起来较为复杂,刚开始的时候弄了半天才弄好.<span id="more"></span></p>
 <hr>
-<h2 id="cx-Oracle-介绍"><a href="#cx-Oracle-介绍" class="headerlink" title="cx_Oracle 介绍"></a>cx_Oracle 介绍</h2><hr>
+<h2 id="cx-Oracle-介绍"><a class="header-anchor" href="#cx-Oracle-介绍"></a>cx_Oracle 介绍</h2>
+<hr>
 <p>详细信息请参阅<a target="_blank" rel="noopener" href="https://cx-oracle.readthedocs.io/en/latest/">cx_Oracle官方文档</a></p>
 <hr>
-<p>&emsp;&emsp;cx_Oracle是一个Python扩展模块,支持Python访问Oracle数据库.</p>
-<h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><p>&emsp;&emsp;该拓展模块大致的结构如下图  </p>
+<p>  cx_Oracle是一个Python扩展模块,支持Python访问Oracle数据库.</p>
+<h3 id="结构"><a class="header-anchor" href="#结构"></a>结构</h3>
+<p>  该拓展模块大致的结构如下图</p>
 <img src="/94ecfc893ac8/cx_Oracle_arch.png" class title="cx_Oracle_arch">  
-<p>&emsp;&emsp;开发者通过编写python程序来调用cx_Oracle模块,而cx_Oracle在内部动态加载 Oracle 客户端库以访问 Oracle 数据库,连接的数据库可以在本地,也可以在远程服务器.<br>&emsp;&emsp;图中与Oracle数据库真正进行通信连接的是最下方的Oracle client libraries，也就是oracle客户端的一些库，由此可以看出,要想通过cx_Oracle操控Oracle数据库,仅仅安装cx_Oracle这个模块是不够的，必须用到Oracle的客户端.</p>
-<h3 id="instant-client"><a href="#instant-client" class="headerlink" title="instant client"></a>instant client</h3><p>&emsp;&emsp;客户端一般使用<a target="_blank" rel="noopener" href="https://www.oracle.com/database/technologies/instant-client/downloads.html">oracle instant client</a>,cx_Oracle在进行操作时只需要用到oracle客户端中的一些库,因此选择Basic Light进行下载即可,注意选的时候不要选错了版本，版本选择最新的就好,以Windows.x64为例，选择此项，高版本的向下一般都可以兼容.  </p>
+<p>  开发者通过编写python程序来调用cx_Oracle模块,而cx_Oracle在内部动态加载 Oracle 客户端库以访问 Oracle 数据库,连接的数据库可以在本地,也可以在远程服务器.<br>
+  图中与Oracle数据库真正进行通信连接的是最下方的Oracle client libraries，也就是oracle客户端的一些库，由此可以看出,要想通过cx_Oracle操控Oracle数据库,仅仅安装cx_Oracle这个模块是不够的，必须用到Oracle的客户端.</p>
+<h3 id="instant-client"><a class="header-anchor" href="#instant-client"></a>instant client</h3>
+<p>  客户端一般使用<a target="_blank" rel="noopener" href="https://www.oracle.com/database/technologies/instant-client/downloads.html">oracle instant client</a>,cx_Oracle在进行操作时只需要用到oracle客户端中的一些库,因此选择Basic Light进行下载即可,注意选的时候不要选错了版本，版本选择最新的就好,以Windows.x64为例，选择此项，高版本的向下一般都可以兼容.</p>
 <img src="/94ecfc893ac8/download.png" class>
-
 <p>下载完后解压,之后将文件夹路径添加到系统变量中即可完成oracle client的准备.</p>
-<h2 id="cx-Oracle-安装"><a href="#cx-Oracle-安装" class="headerlink" title="cx_Oracle 安装"></a>cx_Oracle 安装</h2><p><em>注意:文章中使用的版本为 <strong>python3.6+</strong></em><br>&emsp;&emsp;由于本人python脚本的编写是在pycharm中进行的,因此直接通过GUI添加了cx_Oracle这个模块,如果是命令行,则可以用</p>
+<h2 id="cx-Oracle-安装"><a class="header-anchor" href="#cx-Oracle-安装"></a>cx_Oracle 安装</h2>
+<p><em>注意:文章中使用的版本为 <strong>python3.6+</strong></em><br>
+  由于本人python脚本的编写是在pycharm中进行的,因此直接通过GUI添加了cx_Oracle这个模块,如果是命令行,则可以用</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install cx-oracle</span><br></pre></td></tr></table></figure>
 <p>来进行安装.如果安装失败,很有可能是网络原因,可以选择换pip镜像源或者<a target="_blank" rel="noopener" href="https://pypi.org/project/cx-Oracle/#files">下载离线包</a>来安装</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#转移到存放下载好的模块的地方</span></span><br><span class="line"><span class="built_in">cd</span> .../modules/</span><br><span class="line">pip3 install cx_Oracle-8.2.1-cp36-cp36m-manylinux1_x86_64.whl</span><br></pre></td></tr></table></figure>
-
-<h2 id="使用cx-Oracle连接数据库"><a href="#使用cx-Oracle连接数据库" class="headerlink" title="使用cx_Oracle连接数据库"></a>使用cx_Oracle连接数据库</h2><p>安装完cx_Oracle库之后即可开始使用cx_Oracle操作数据库  ，下面是一个最简易的cx_Oracle连接数据库的方式。</p>
+<h2 id="使用cx-Oracle连接数据库"><a class="header-anchor" href="#使用cx-Oracle连接数据库"></a>使用cx_Oracle连接数据库</h2>
+<p>安装完cx_Oracle库之后即可开始使用cx_Oracle操作数据库  ，下面是一个最简易的cx_Oracle连接数据库的方式。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cx_Oracle</span><br><span class="line">DB = <span class="string">&#x27;username/password@ip:port/SERVICE_NAME&#x27;</span></span><br><span class="line">conn = cx_Oracle.connect(DB)</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    sql = <span class="string">&quot;select to_char(sysdate,&#x27;yyyy-mm-dd hh24:mi:ss&#x27;) from dual&quot;</span></span><br><span class="line">    <span class="keyword">with</span> conn.cursor() <span class="keyword">as</span> cur:</span><br><span class="line">        result = cur.execute(sql).fetchall()</span><br><span class="line">    <span class="built_in">print</span>(result[<span class="number">0</span>][<span class="number">0</span>])</span><br><span class="line">    <span class="comment">#2021-08-31 09:47:16</span></span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    conn.close()</span><br></pre></td></tr></table></figure>
-
 <p>如果配置无误，最后数据库会成功返回当前的日期时间.</p>
 <p>如果环境变量中配置过数据库的TNS_ADMIN路径并配置好了tnsnames.ora文件，就可以通过如下方式连接:</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#tnsnames.ora文件配置示例</span></span><br><span class="line">mydb =</span><br><span class="line">  (DESCRIPTION =</span><br><span class="line">    (ADDRESS_LIST =</span><br><span class="line">      (ADDRESS = (PROTOCOL = TCP)(HOST = x.x.x.x)(PORT = 1521))</span><br><span class="line">    )</span><br><span class="line">    (CONNECT_DATA =</span><br><span class="line">      (SERVICE_NAME = orcl)</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">  </span><br></pre></td></tr></table></figure>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">connection = cx_Oracle.connect(user=user, password=userpwd, dsn=<span class="string">&quot;mydb&quot;</span>,</span><br><span class="line">                               encoding=<span class="string">&quot;UTF-8&quot;</span>)</span><br></pre></td></tr></table></figure>
-
 <p>只需要配置用户名和密码即可进行连接。</p>
-<h2 id="附一些常见错误："><a href="#附一些常见错误：" class="headerlink" title="附一些常见错误："></a>附一些常见错误：</h2><h3 id="DPI-1047：这一类报错通常是cx-oracle一些本地的配置的问题"><a href="#DPI-1047：这一类报错通常是cx-oracle一些本地的配置的问题" class="headerlink" title="DPI-1047：这一类报错通常是cx_oracle一些本地的配置的问题"></a>DPI-1047：这一类报错通常是cx_oracle一些本地的配置的问题</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cx_Oracle.DatabaseError: DPI-1047: Cannot locate a 64-bit Oracle Client library: <span class="string">&quot;The specified module could not be found&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>原因</strong> </p>
+<h2 id="附一些常见错误："><a class="header-anchor" href="#附一些常见错误："></a>附一些常见错误：</h2>
+<h3 id="DPI-1047：这一类报错通常是cx-oracle一些本地的配置的问题"><a class="header-anchor" href="#DPI-1047：这一类报错通常是cx-oracle一些本地的配置的问题"></a>DPI-1047：这一类报错通常是cx_oracle一些本地的配置的问题</h3>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cx_Oracle.DatabaseError: DPI-1047: Cannot locate a 64-bit Oracle Client library: <span class="string">&quot;The specified module could not be found&quot;</span></span><br></pre></td></tr></table></figure>
+<p><strong>原因</strong></p>
 <ul>
-<li>系统路径中没有添加Oracle的客户端路径  </li>
+<li>系统路径中没有添加Oracle的客户端路径</li>
 <li>系统安装的cx_Oracle版本与Oracle客户端版本不匹配（ x32 | x64 ）</li>
 </ul>
-<p><strong>解决方法</strong>  </p>
-<p>如果路径有误:<br>&emsp;&emsp;添加相应的路径到环境变量中  </p>
+<p><strong>解决方法</strong></p>
+<p>如果路径有误:<br>
+  添加相应的路径到环境变量中</p>
 <ul>
-<li>Windows:<br>  PATH中添加…\instantclient_11_2文件夹即可</li>
-<li>Linux:<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#永久将该路径存入系统变量中</span></span><br><span class="line">sudo sh -c <span class="string">&quot;echo /opt/oracle/instantclient_21_1 &gt; /etc/ld.so.conf.d/oracle-instantclient.conf&quot;</span>  </span><br><span class="line">sudo ldconfig</span><br></pre></td></tr></table></figure>
-如果是版本不匹配，那么就重新下载位数匹配的客户端客户端再次进行尝试.  </li>
+<li>Windows:<br>
+PATH中添加…\instantclient_11_2文件夹即可</li>
+<li>Linux:</li>
 </ul>
-<h3 id="ORA-12514：这一类报错通常是数据库服务方面的问题"><a href="#ORA-12514：这一类报错通常是数据库服务方面的问题" class="headerlink" title="ORA-12514：这一类报错通常是数据库服务方面的问题"></a>ORA-12514：这一类报错通常是数据库服务方面的问题</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cx_Oracle.DatabaseError: ORA-12514: TNS:listener does not currently know of service requested <span class="keyword">in</span> connect descriptor</span><br></pre></td></tr></table></figure>
-
-<p><strong>原因</strong> </p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#永久将该路径存入系统变量中</span></span><br><span class="line">sudo sh -c <span class="string">&quot;echo /opt/oracle/instantclient_21_1 &gt; /etc/ld.so.conf.d/oracle-instantclient.conf&quot;</span>  </span><br><span class="line">sudo ldconfig</span><br></pre></td></tr></table></figure>
+<p>如果是版本不匹配，那么就重新下载位数匹配的客户端客户端再次进行尝试.</p>
+<h3 id="ORA-12514：这一类报错通常是数据库服务方面的问题"><a class="header-anchor" href="#ORA-12514：这一类报错通常是数据库服务方面的问题"></a>ORA-12514：这一类报错通常是数据库服务方面的问题</h3>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cx_Oracle.DatabaseError: ORA-12514: TNS:listener does not currently know of service requested <span class="keyword">in</span> connect descriptor</span><br></pre></td></tr></table></figure>
+<p><strong>原因</strong></p>
 <ul>
-<li>Oracle连接服务名设置出错  </li>
+<li>Oracle连接服务名设置出错</li>
 </ul>
-<p><strong>解决方法</strong>  </p>
+<p><strong>解决方法</strong></p>
 <ul>
-<li><p>修改Oracle连接的服务名，服务名可以通过oracle命令行查询</p>
+<li>
+<p>修改Oracle连接的服务名，服务名可以通过oracle命令行查询</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SQL</span><span class="operator">&gt;</span> <span class="keyword">SHOW</span> <span class="keyword">PARAMETER</span> service_names</span><br><span class="line">NAME                                 TYPE        <span class="keyword">VALUE</span></span><br><span class="line"><span class="comment">------------------------------------ ----------- ------------------------------</span></span><br><span class="line">service_names                        string      orcl</span><br></pre></td></tr></table></figure>
-
-
-
 <p>可以看到这里服务名就是orcl(一般默认服务名即为orcl).修改后应该就可以成功连接了.</p>
 </li>
 </ul>
@@ -379,7 +383,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://mrilboom.github.io/94ecfc893ac8/" title="cx_Oracle操作Oracle数据库(一):配置篇">https://mrilboom.github.io/94ecfc893ac8/</a>
+      <a href="https://mrilboom.github.io/2021/08/cx_Oracle_1/" title="cx_Oracle操作Oracle数据库(一):配置篇">https://mrilboom.github.io/2021/08/cx_Oracle_1/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -396,12 +400,12 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/564c01ae12e5/" rel="prev" title="ssh密钥验证那些事">
+                <a href="/2021/08/SSHkey/" rel="prev" title="ssh密钥验证那些事">
                   <i class="fa fa-chevron-left"></i> ssh密钥验证那些事
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/42088e74089a/" rel="next" title="cx_Oracle操作Oracle数据库(二):代码篇">
+                <a href="/2021/08/cx_Oracle_2/" rel="next" title="cx_Oracle操作Oracle数据库(二):代码篇">
                   cx_Oracle操作Oracle数据库(二):代码篇 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
@@ -471,7 +475,7 @@
 
 
 
-<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://comment.mrilboom.love/","placeholder":"支持匿名提交哦（o´・ェ・｀o）","avatar":"retro","pageSize":10,"visitor":false,"comment_count":true,"requiredFields":[],"meta":["nick","mail","link"],"requiredMeta":[],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","dark":"body.darkmode--activated","el":"#waline-comments","path":"/94ecfc893ac8/"}</script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://comment.mrilboom.love/","placeholder":"支持匿名提交哦（o´・ェ・｀o）","avatar":"retro","pageSize":10,"visitor":false,"comment_count":true,"requiredFields":[],"meta":["nick","mail","link"],"requiredMeta":[],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","dark":"body.darkmode--activated","el":"#waline-comments","path":"/2021/08/cx_Oracle_1/"}</script>
 <script>
 document.addEventListener('page:loaded', () => {
   NexT.utils.loadComments(CONFIG.waline.el).then(() => 
