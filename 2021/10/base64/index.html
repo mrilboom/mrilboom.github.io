@@ -20,28 +20,30 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"mrilboom.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.7.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":260},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":null}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/./public/search.xml","localsearch":{"enable":"auto","trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="之前在做数据解析自动化导入的时候,因为前端的调度系统出现了问题,导致无法连接上远程的shell,因此只能在本地进行任务的自动导入,用到的就是 cron 这个工具.">
+<meta name="description" content="从事计算机这一领域的人员或多或少的会听说过 base64 这个编码方式，可能更多地听到的是 base64 加密解密，这两天刚好接触到了 base64 的内容，因此我又重温了一遍 base64 的内容。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="cron计划任务">
-<meta property="og:url" content="https://mrilboom.github.io/2021/09/cron/index.html">
+<meta property="og:title" content="base 64 编码详解">
+<meta property="og:url" content="https://mrilboom.github.io/2021/10/base64/index.html">
 <meta property="og:site_name" content="mrilboom">
-<meta property="og:description" content="之前在做数据解析自动化导入的时候,因为前端的调度系统出现了问题,导致无法连接上远程的shell,因此只能在本地进行任务的自动导入,用到的就是 cron 这个工具.">
+<meta property="og:description" content="从事计算机这一领域的人员或多或少的会听说过 base64 这个编码方式，可能更多地听到的是 base64 加密解密，这两天刚好接触到了 base64 的内容，因此我又重温了一遍 base64 的内容。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-09-09T02:06:03.000Z">
-<meta property="article:modified_time" content="2021-09-30T02:31:19.671Z">
+<meta property="og:image" content="https://mrilboom.github.io/2021/10/base64/coding.png">
+<meta property="article:published_time" content="2021-10-19T03:08:59.000Z">
+<meta property="article:modified_time" content="2021-10-19T03:16:29.113Z">
 <meta property="article:author" content="mrilboom">
-<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="learn,mood">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mrilboom.github.io/2021/10/base64/coding.png">
 
 
-<link rel="canonical" href="https://mrilboom.github.io/2021/09/cron/">
+<link rel="canonical" href="https://mrilboom.github.io/2021/10/base64/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh_CN","comments":true,"permalink":"https://mrilboom.github.io/2021/09/cron/","path":"2021/09/cron/","title":"cron计划任务"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh_CN","comments":true,"permalink":"https://mrilboom.github.io/2021/10/base64/","path":"2021/10/base64/","title":"base 64 编码详解"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>cron计划任务 | mrilboom</title>
+<title>base 64 编码详解 | mrilboom</title>
   
 
   <script src="/js/third-party/analytics/baidu-analytics.js"></script>
@@ -155,7 +157,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#cron-%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">cron 介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cron-%E5%92%8C-crontab-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.1.</span> <span class="nav-text">cron 和 crontab 的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-cron"><span class="nav-number">2.</span> <span class="nav-text">使用 cron</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cron-%E5%AE%89%E8%A3%85"><span class="nav-number">2.1.</span> <span class="nav-text">cron 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cron-%E4%BD%BF%E7%94%A8"><span class="nav-number">2.2.</span> <span class="nav-text">cron 使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95"><span class="nav-number">3.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF"><span class="nav-number">4.</span> <span class="nav-text">模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">编码方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E7%A0%81%E8%A1%A8"><span class="nav-number">2.1.</span> <span class="nav-text">编码表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="nav-number">2.2.</span> <span class="nav-text">编码示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -226,7 +228,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh_CN">
-    <link itemprop="mainEntityOfPage" href="https://mrilboom.github.io/2021/09/cron/">
+    <link itemprop="mainEntityOfPage" href="https://mrilboom.github.io/2021/10/base64/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Lute.jpg">
@@ -239,7 +241,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          cron计划任务
+          base 64 编码详解
         </h1>
 
         <div class="post-meta-container">
@@ -249,16 +251,10 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2021-09-09 10:06:03" itemprop="dateCreated datePublished" datetime="2021-09-09T10:06:03+08:00">2021-09-09</time>
+      <time title="创建时间：2021-10-19 11:08:59 / 修改时间：11:16:29" itemprop="dateCreated datePublished" datetime="2021-10-19T11:08:59+08:00">2021-10-19</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-09-30 10:31:19" itemprop="dateModified" datetime="2021-09-30T10:31:19+08:00">2021-09-30</time>
-      </span>
 
   
   
@@ -269,8 +265,8 @@
     </span>
     <span class="post-meta-item-text">评论：</span>
   
-    <a title="waline" href="/2021/09/cron/#waline-comments" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" id="/2021/09/cron/" data-xid="/2021/09/cron/" itemprop="commentCount"></span>
+    <a title="waline" href="/2021/10/base64/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/2021/10/base64/" data-xid="/2021/10/base64/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -281,7 +277,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.3k</span>
+      <span>1.2k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -300,80 +296,289 @@
     
     <div class="post-body" itemprop="articleBody">
         <hr>
-<p>  之前在做数据解析自动化导入的时候,因为前端的调度系统出现了问题,导致无法连接上远程的shell,因此只能在本地进行任务的自动导入,用到的就是 cron 这个工具.<span id="more"></span></p>
+<p>从事计算机这一领域的人员或多或少的会听说过 base64 这个编码方式，可能更多地听到的是 base64 加密解密，这两天刚好接触到了 base64 的内容，因此我又重温了一遍 base64 的内容。<span id="more"></span></p>
 <hr>
-<p><em><strong>本文介绍的是Linux系统中的 cron 定时任务， Java 中的 Spring 的 cron 会有所不同，不过基本上是大同小异</strong></em></p>
-<h2 id="cron-介绍"><a class="header-anchor" href="#cron-介绍"></a>cron 介绍</h2>
-<p>在 Linux 系统中 crontab 是用来定期执行程序的命令,当安装完成操作系统之后,默认便会启动此任务调度命令. cron每分钟会定期检查是否有要执行的工作,如果有要执行的工作便会自动执行该工作.</p>
-<h3 id="cron-和-crontab-的区别"><a class="header-anchor" href="#cron-和-crontab-的区别"></a>cron 和 crontab 的区别</h3>
-<p>cron 是 Linux 进行定期执行程序的一个工具,它提供给用户一个条 crontab 命令来进行调度使用,而 crontab 则是 cron 提供给用户进行计划任务管理的一条命令.</p>
-<h2 id="使用-cron"><a class="header-anchor" href="#使用-cron"></a>使用 cron</h2>
-<h3 id="cron-安装"><a class="header-anchor" href="#cron-安装"></a>cron 安装</h3>
-<p>  一般 Linux 系统中都会默认安装并自动启用 cron,可输入 <code>cron</code>命令进行查看,如果没有安装,则可以进行手动安装:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CentOS</span></span><br><span class="line">yum install vixie-cron</span><br><span class="line">yum install crontabs</span><br><span class="line"><span class="comment"># Ubuntu</span></span><br><span class="line">apt-get install cron</span><br><span class="line"><span class="comment"># 启动服务</span></span><br><span class="line">service cron start</span><br><span class="line"><span class="comment"># 设置自启动</span></span><br><span class="line">systemctl <span class="built_in">enable</span> cron</span><br></pre></td></tr></table></figure>
-<h3 id="cron-使用"><a class="header-anchor" href="#cron-使用"></a>cron 使用</h3>
-<p>  启动了 cron 服务之后,就可以通过 crontab 命令来进行管理使用,cron通过读取 crontab 配置表来进行计划的执行,对于用户而言,配置表在<code>/var/spool/cron/crontabs/username</code>中,要修改表只需要通过执行<code>crontab -e</code>就可对里面的数据进行修改.而对于系统而言,计划任务的配置在<code>/etc/crontab</code>中,直接通过修改该文件即可进行全局配置.</p>
-<p>  cron 基本的配置如下:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># .---------------- minute (0 - 59)</span></span><br><span class="line"><span class="comment"># |  .------------- hour (0 - 23)</span></span><br><span class="line"><span class="comment"># |  |  .---------- day of month (1 - 31)</span></span><br><span class="line"><span class="comment"># |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...</span></span><br><span class="line"><span class="comment"># |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat</span></span><br><span class="line"><span class="comment"># |  |  |  |  |</span></span><br><span class="line"><span class="comment"># *  *  *  *  * user-name command to be executed</span></span><br><span class="line">t1 t2 t3 t4 t5 (user-name) <span class="built_in">command</span></span><br></pre></td></tr></table></figure>
-<p>其中,command 即为打算计划执行的命令,t1、t2、t3、t4、t5 分别为执行日期分钟、小时、日、月和星期的设置,以这些数据即可具体到一年中的每一天具体的某时某分的一个时间点.其中:</p>
-<ul>
-<li><code>*</code>代表所有时间</li>
-<li><code>-</code>代表时间段区间</li>
-<li><code>,</code>代表单独时间</li>
-<li><code>/</code>代表每隔多少时间</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">00 8 *  *  1-5  wall Good morning, programmer!</span><br></pre></td></tr></table></figure>
-<p>比如上面的这条命令就可以在每周工作日早上8点钟向所有登录终端的用户发送一条消息.</p>
-<p>如果想设置工作日,从8点起到18点,每隔2小时发送一条消息,可以改成:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">00 8-18/2 *  *  1-5  wall Hello, programmer!</span><br></pre></td></tr></table></figure>
-<p>这些参数中,有两个比较特别: t3 和 t5 ,比如:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">00 8 9  *  5  wall Good morning, programmer!</span><br></pre></td></tr></table></figure>
-<p>2021年9月9日是周四,这条命令会在每月的9号和每周的周五执行,具体把时间分组的话可以分为G1:t1,t2（几时几分）,G2:t3,t4（几月几日）,G3:t5（周几）,最后的执行时间就是R1:(G1,G2)与R2:(G1,G3)取并集(∪).而每个G、R之内的时间都是取交集(∩)的.</p>
-<h2 id="测试"><a class="header-anchor" href="#测试"></a>测试</h2>
-<p>  在网上找到了一个可以在线进行 cron 表达式测试的网站:<a target="_blank" rel="noopener" href="https://tool.lu/crontab/">crontab 执行时间计算</a>,如果对于时间设置不熟悉的可以在这里多尝试一下.</p>
-<h2 id="模板"><a class="header-anchor" href="#模板"></a>模板</h2>
-<p>这里提供了一些cron常用的模板以供参考</p>
+<h2 id="介绍"><a class="header-anchor" href="#介绍"></a>介绍</h2>
+<p>​	首先，base64 并不是一种加密方式，虽然它对于人类来说不可读，但是它的编码风格很有特色：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SXNhYWMgYW5kIGhpcyBtb3RoZXIgbGl2ZWQgYWxvbmUgaW4gYSBzbWFsbCBob3VzZSBvbiBhIGhpbGwuIElzYWFjIGtlcHQgdG8gaGltc2VsZiBkcmF3aW5nIHBpY3R1cmVzIGFuZCBwbGF5aW5nIHdpdGggaGlzIHRveXMgYXMgaGlzIG1vbSB3YXRjaGVkIENocmlzdGlhbiBicm9hZGNhc3RzIG9uIHRoZSB0ZWxldmlzaW9uLiBMaWZlIHdhcyBzaW1wbGUgYW5kIHRoZXkgd2VyZSBib3RoIGhhcHB5LiBUaGF0IHdhcyB1bnRpbCB0aGUgZGF5IElzYWFjJ3MgbW9tIGhlYXJkIGEgdm9pY2UgZnJvbSBhYm92ZToKCiJZb3VyIHNvbiBoYXMgYmVjb21lIGNvcnJ1cHRlZCBieSBzaW4uIEhlIG5lZWRzIHRvIGJlIHNhdmVkLiIKIkkgd2lsbCBkbyBteSBiZXN0IHRvIHNhdmUgaGltLCBteSBMb3JkLCIgSXNhYWMncyBtb3RoZXIgcmVwbGllZCwgcnVzaGluZyBpbnRvIElzYWFjJ3Mgcm9vbSwgcmVtb3ZpbmcgYWxsIHRoYXQgd2FzIGV2aWwgZnJvbSBoaXMgbGlmZS4uLg==</span><br></pre></td></tr></table></figure>
+<p>​	这串编码中只出现了大小写字母而且末尾有<code>=</code>,稍微了解过 base64 的人一眼就能看出用了 base64 编码，随便找个在线解码的网站复制一下解码就可以看到原文，因此 base64 对于数据的安全性来说没有任何的保障。</p>
+<p>​	既然 base64 没有加密的功能，而且它把好好的文字数据搞成这样乱七八糟，有什么意义呢？<br>
+​	base64 主要是为了计算机之间数据传输而设计的（尽管它将原数据编码后长度反而会增加三分之一），两台计算机之间传输数据，通过网线传入传出的肯定会是 0101 这样的二进制数据，因此接收方必须对这些数据进行解码，但是有时候这些数据中包含了一些控制字符，比如<code>ACK</code>、<code>NULL</code>等，这些字符不可打印，在文本传输的时候接收方可能会错误的解码，导致数据出现问题，因此有人就采用了base64 这一套解决方案，它将所有字符编码成可打印输出的字符，避免因为控制字符的问题而导致的文本乱码。</p>
+<h2 id="编码方式"><a class="header-anchor" href="#编码方式"></a>编码方式</h2>
+<h3 id="编码表"><a class="header-anchor" href="#编码表"></a>编码表</h3>
+<p>​	base64 之所以叫做64 ，是因为它选取了64个可打印字符进行编码，分别是大小写a-z，52个，0-9，10个，再加上<code>+</code>、<code>/</code>2个，一共64个字符。</p>
 <table>
 <thead>
 <tr>
-<th>效果</th>
-<th>cron模板(中括号中数字为参数顺序)</th>
-<th>cron预览</th>
-<th>默认值</th>
+<th style="text-align:center">数值</th>
+<th style="text-align:center">字符</th>
+<th style="text-align:center">数值</th>
+<th style="text-align:center">字符</th>
+<th style="text-align:center">数值</th>
+<th style="text-align:center">字符</th>
+<th style="text-align:center">数值</th>
+<th style="text-align:center">字符</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>每15分钟构建一次</td>
-<td>0/{} * * * *</td>
-<td>0/15 * * * *</td>
-<td>15</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center">16</td>
+<td style="text-align:center">Q</td>
+<td style="text-align:center">32</td>
+<td style="text-align:center">g</td>
+<td style="text-align:center">48</td>
+<td style="text-align:center">w</td>
 </tr>
 <tr>
-<td>周1到周5，8点~17点，2小时构建一次</td>
-<td>0 {2}-{3}/{4} * {0}-{1}</td>
-<td>0 8-17/2 * * MON-FRI</td>
-<td>1,5,8,17,2</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">B</td>
+<td style="text-align:center">17</td>
+<td style="text-align:center">R</td>
+<td style="text-align:center">33</td>
+<td style="text-align:center">h</td>
+<td style="text-align:center">49</td>
+<td style="text-align:center">x</td>
 </tr>
 <tr>
-<td>每天8~17点，2小时构建一次</td>
-<td>0 {0}-{1}/{2} * *</td>
-<td>0 8-17/2 * * *</td>
-<td>8,17,2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">C</td>
+<td style="text-align:center">18</td>
+<td style="text-align:center">S</td>
+<td style="text-align:center">34</td>
+<td style="text-align:center">i</td>
+<td style="text-align:center">50</td>
+<td style="text-align:center">y</td>
 </tr>
 <tr>
-<td>每天8点构建一次</td>
-<td>0 {} * * *</td>
-<td>0 8 * * *</td>
-<td>8</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">D</td>
+<td style="text-align:center">19</td>
+<td style="text-align:center">T</td>
+<td style="text-align:center">35</td>
+<td style="text-align:center">j</td>
+<td style="text-align:center">51</td>
+<td style="text-align:center">z</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">E</td>
+<td style="text-align:center">20</td>
+<td style="text-align:center">U</td>
+<td style="text-align:center">36</td>
+<td style="text-align:center">k</td>
+<td style="text-align:center">52</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">F</td>
+<td style="text-align:center">21</td>
+<td style="text-align:center">V</td>
+<td style="text-align:center">37</td>
+<td style="text-align:center">l</td>
+<td style="text-align:center">53</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">G</td>
+<td style="text-align:center">22</td>
+<td style="text-align:center">W</td>
+<td style="text-align:center">38</td>
+<td style="text-align:center">m</td>
+<td style="text-align:center">54</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">H</td>
+<td style="text-align:center">23</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">39</td>
+<td style="text-align:center">n</td>
+<td style="text-align:center">55</td>
+<td style="text-align:center">3</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:center">I</td>
+<td style="text-align:center">24</td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center">40</td>
+<td style="text-align:center">o</td>
+<td style="text-align:center">56</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td style="text-align:center">J</td>
+<td style="text-align:center">25</td>
+<td style="text-align:center">Z</td>
+<td style="text-align:center">41</td>
+<td style="text-align:center">p</td>
+<td style="text-align:center">57</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">K</td>
+<td style="text-align:center">26</td>
+<td style="text-align:center">a</td>
+<td style="text-align:center">42</td>
+<td style="text-align:center">q</td>
+<td style="text-align:center">58</td>
+<td style="text-align:center">6</td>
+</tr>
+<tr>
+<td style="text-align:center">11</td>
+<td style="text-align:center">L</td>
+<td style="text-align:center">27</td>
+<td style="text-align:center">b</td>
+<td style="text-align:center">43</td>
+<td style="text-align:center">r</td>
+<td style="text-align:center">59</td>
+<td style="text-align:center">7</td>
+</tr>
+<tr>
+<td style="text-align:center">12</td>
+<td style="text-align:center">M</td>
+<td style="text-align:center">28</td>
+<td style="text-align:center">c</td>
+<td style="text-align:center">44</td>
+<td style="text-align:center">s</td>
+<td style="text-align:center">60</td>
+<td style="text-align:center">8</td>
+</tr>
+<tr>
+<td style="text-align:center">13</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center">29</td>
+<td style="text-align:center">d</td>
+<td style="text-align:center">45</td>
+<td style="text-align:center">t</td>
+<td style="text-align:center">61</td>
+<td style="text-align:center">9</td>
+</tr>
+<tr>
+<td style="text-align:center">14</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">30</td>
+<td style="text-align:center">e</td>
+<td style="text-align:center">46</td>
+<td style="text-align:center">u</td>
+<td style="text-align:center">62</td>
+<td style="text-align:center">+</td>
+</tr>
+<tr>
+<td style="text-align:center">15</td>
+<td style="text-align:center">P</td>
+<td style="text-align:center">31</td>
+<td style="text-align:center">f</td>
+<td style="text-align:center">47</td>
+<td style="text-align:center">v</td>
+<td style="text-align:center">63</td>
+<td style="text-align:center">/</td>
 </tr>
 </tbody>
 </table>
+<h3 id="编码示例"><a class="header-anchor" href="#编码示例"></a>编码示例</h3>
+<p>来看一下它的编码方式：</p>
+<img src="/2021/10/base64/coding.png" class>
+<p><font size="2"><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2008/06/base64.html">阮一峰 | Base64 笔记</a></font></p>
+<p>首先将要编码的数据转换成二进制的形式，之后按照 6 个为一组进行分割，将分割后的二进制转换为十进制，再查表找到对应的字符即可，例如<code>Man</code>转换为二进制为</p>
+<table>
+<thead>
+<tr>
+<th>0</th>
+<th>1</th>
+<th>0</th>
+<th>0</th>
+<th>1</th>
+<th>1</th>
+<th>0</th>
+<th>1</th>
+<th>*</th>
+<th>0</th>
+<th>1</th>
+<th>1</th>
+<th>0</th>
+<th>0</th>
+<th>0</th>
+<th>0</th>
+<th>1</th>
+<th>*</th>
+<th>0</th>
+<th>1</th>
+<th>1</th>
+<th>0</th>
+<th>1</th>
+<th>1</th>
+<th>1</th>
+<th>0</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+<p>分割之后变为</p>
+<table>
+<thead>
+<tr>
+<th>0</th>
+<th>1</th>
+<th>0</th>
+<th>0</th>
+<th>1</th>
+<th>1</th>
+<th>*</th>
+<th>0</th>
+<th>1</th>
+<th>0</th>
+<th>1</th>
+<th>1</th>
+<th>0</th>
+<th>*</th>
+<th>0</th>
+<th>0</th>
+<th>0</th>
+<th>1</th>
+<th>0</th>
+<th>1</th>
+<th>*</th>
+<th>1</th>
+<th>0</th>
+<th>1</th>
+<th>1</th>
+<th>1</th>
+<th>0</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+<p>对应的字符为</p>
+<table>
+<thead>
+<tr>
+<th>19</th>
+<th>22</th>
+<th>5</th>
+<th>46</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T</td>
+<td>W</td>
+<td>F</td>
+<td>u</td>
+</tr>
+</tbody>
+</table>
+<p>它其实将原来的3个字节变成了4个字节，数据长度增加了三分之一。</p>
+<p>因为不是编码前后等长对应的，有时候会出现不够划分的情况，比如<code>M</code>会被分为<code>0  1  0  0  1  1  *  0  1</code>,因此规定长度不够的一律低位补0，因此M会被编码为<code>TQ</code>,但是 base64 还有一个规定，编码之后不够4个字节的在末尾补足<code>=</code>，使得编码后的数据能够4个一组进行划分，方便了之后的解码。因此实际上 base64 编码表有65个。这里的<code>=</code>也是 base64 编码最大的特色，因此以后如果看到一串乱七八糟的大小写混合的字符以<code>=</code>结尾，基本上可以确定它就是以 base64 编码的了。</p>
+<p><font size="6" face="幼圆" color="lightblue">to be continue···</font></p>
 <h2 id="参考资料"><a class="header-anchor" href="#参考资料"></a>参考资料</h2>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-crontab.html">菜鸟教程 | Linux crontab 命令</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/intval/p/5763929.html">再見理想 - 博客园</a></li>
-</ul>
 
     </div>
 
@@ -395,7 +600,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://mrilboom.github.io/2021/09/cron/" title="cron计划任务">https://mrilboom.github.io/2021/09/cron/</a>
+      <a href="https://mrilboom.github.io/2021/10/base64/" title="base 64 编码详解">https://mrilboom.github.io/2021/10/base64/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -403,22 +608,16 @@
 </ul>
 </div>
 
-          <div class="post-tags">
-              <a href="/tags/Linux/" rel="tag"><i class="fa fa-tag"></i> Linux</a>
-          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2021/08/cx_Oracle_2/" rel="prev" title="cx_Oracle操作Oracle数据库(二):代码篇">
-                  <i class="fa fa-chevron-left"></i> cx_Oracle操作Oracle数据库(二):代码篇
+                <a href="/2021/10/baseKnowledge/" rel="prev" title="一些金融方面的基础知识记录">
+                  <i class="fa fa-chevron-left"></i> 一些金融方面的基础知识记录
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2021/09/PyCharmDEBUG/" rel="next" title="如何优雅地在PyCharm中调试代码">
-                  如何优雅地在PyCharm中调试代码 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -492,7 +691,7 @@
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
-<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://comment.mrilboom.love/","placeholder":"支持匿名提交哦（o´・ェ・｀o）","avatar":"retro","pageSize":10,"visitor":false,"comment_count":true,"requiredFields":[],"meta":["nick","mail","link"],"requiredMeta":[],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","dark":"body.darkmode--activated","el":"#waline-comments","path":"/2021/09/cron/"}</script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://comment.mrilboom.love/","placeholder":"支持匿名提交哦（o´・ェ・｀o）","avatar":"retro","pageSize":10,"visitor":false,"comment_count":true,"requiredFields":[],"meta":["nick","mail","link"],"requiredMeta":[],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","dark":"body.darkmode--activated","el":"#waline-comments","path":"/2021/10/base64/"}</script>
 <script>
 document.addEventListener('page:loaded', () => {
   NexT.utils.loadComments(CONFIG.waline.el).then(() => 
