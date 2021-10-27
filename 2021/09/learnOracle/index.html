@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"mrilboom.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.7.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":260},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":null}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/./public/search.xml","localsearch":{"enable":"auto","trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"mrilboom.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":260},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":null}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/./public/search.xml","localsearch":{"enable":"auto","trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta name="description" content="Oracle SQL高级编程阅读笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Oracle SQL高级编程阅读笔记">
@@ -27,16 +27,16 @@
 <meta property="og:site_name" content="mrilboom">
 <meta property="og:description" content="Oracle SQL高级编程阅读笔记">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://mrilboom.github.io/116e60bf6c57/process.png">
-<meta property="og:image" content="https://mrilboom.github.io/116e60bf6c57/table.png">
-<meta property="og:image" content="https://mrilboom.github.io/116e60bf6c57/before.png">
-<meta property="og:image" content="https://mrilboom.github.io/116e60bf6c57/after.png">
+<meta property="og:image" content="https://mrilboom.github.io/2021/09/learnOracle/process.png">
+<meta property="og:image" content="https://mrilboom.github.io/2021/09/learnOracle/table.png">
+<meta property="og:image" content="https://mrilboom.github.io/2021/09/learnOracle/before.png">
+<meta property="og:image" content="https://mrilboom.github.io/2021/09/learnOracle/after.png">
 <meta property="article:published_time" content="2021-09-17T02:52:33.000Z">
 <meta property="article:modified_time" content="2021-09-30T02:30:53.702Z">
 <meta property="article:author" content="mrilboom">
 <meta property="article:tag" content="Oracle">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://mrilboom.github.io/116e60bf6c57/process.png">
+<meta name="twitter:image" content="https://mrilboom.github.io/2021/09/learnOracle/process.png">
 
 
 <link rel="canonical" href="https://mrilboom.github.io/2021/09/learnOracle/">
@@ -380,7 +380,7 @@
 <p>这里的结果集并不会有改变，但是第二局的解析执行速度会更加高效</p>
 <h3 id="2-7-2-13一些优化解析执行速度的办法"><a class="header-anchor" href="#2-7-2-13一些优化解析执行速度的办法"></a>2.7 -2.13一些优化解析执行速度的办法</h3>
 <p>主要列举了视图合并、子查询解嵌套、谓语前推、使用物化视图进行查询重写等优化解析的方式，这里一大部分全都在介绍硬解析中对于执行方案的优化与选择，最后确定出执行计划。</p>
-<img src="/116e60bf6c57/process.png" class>
+<img src="/2021/09/learnOracle/process.png" class>
 <h2 id="第三章-访问和联结方法"><a class="header-anchor" href="#第三章-访问和联结方法"></a>第三章 访问和联结方法</h2>
 <h3 id="访问方法"><a class="header-anchor" href="#访问方法"></a>访问方法</h3>
 <p>比较多的经验法则（ROT,Rule Of Thumb）提到一个判断是否要使用全扫描访问的依据——查询将取出表中多少的数据行。如果多于百分之多少，就应该用全扫描，这个说法有依据，但凡事总有例外，大部分情况下这个法则是可行的。</p>
@@ -390,15 +390,15 @@
 <p>下面给出一段代码，在即使查询量只有所有数据的1%时全扫描也更占优势</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> t1 <span class="keyword">as</span> </span><br><span class="line"><span class="keyword">select</span>	trunc((rownum<span class="number">-1</span>)<span class="operator">/</span><span class="number">100</span>) id,	<span class="comment">-- trunc函数将数字取整</span></span><br><span class="line">        rpad(rownum,<span class="number">100</span>) t_pad		<span class="comment">-- rpad函数填充作用</span></span><br><span class="line"><span class="keyword">from</span>	dba_source</span><br><span class="line"><span class="keyword">where</span>	rownum <span class="operator">&lt;=</span> <span class="number">10000</span>;</span><br><span class="line"><span class="keyword">create</span> index t1_dix1 <span class="keyword">on</span> t1(id);</span><br><span class="line"><span class="keyword">exec</span> dbms_stats.gather_table_stats(<span class="keyword">user</span>,<span class="string">&#x27;t1&#x27;</span>,method_opt<span class="operator">=</span><span class="operator">&gt;</span><span class="string">&#x27;FOR ALL COLUMNS SIZE 1&#x27;</span>,cascade<span class="operator">=</span><span class="operator">&gt;</span><span class="literal">TRUE</span>);	<span class="comment">-- 分析记录</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> t2 <span class="keyword">as</span> </span><br><span class="line"><span class="keyword">select</span>	<span class="built_in">mod</span>(rownum,<span class="number">100</span>) id,</span><br><span class="line">        rpad(rownum,<span class="number">100</span>) t_pad</span><br><span class="line"><span class="keyword">from</span>	dba_source</span><br><span class="line"><span class="keyword">where</span>	rownum <span class="operator">&lt;=</span> <span class="number">10000</span>;</span><br><span class="line"><span class="keyword">create</span> index t2_dix1 <span class="keyword">on</span> t2(id);</span><br><span class="line"><span class="keyword">exec</span> dbms_stats.gather_table_stats(<span class="keyword">user</span>,<span class="string">&#x27;t2&#x27;</span>,method_opt<span class="operator">=</span><span class="operator">&gt;</span><span class="string">&#x27;FOR ALL COLUMNS SIZE 1&#x27;</span>,cascade<span class="operator">=</span><span class="operator">&gt;</span><span class="literal">TRUE</span>);</span><br></pre></td></tr></table></figure>
 <p>对于两张表的数据而言，其内容是一样的，但是其数据分布不同，</p>
-<img src="/116e60bf6c57/table.png" class>
+<img src="/2021/09/learnOracle/table.png" class>
 <p>其中T1可以看成随机存储，T2可以看成顺序存储。全表扫描的话，只需要访问连续的几个数据块即可取得查询所需的数据，如果使用索引访问的话，就需要先查找索引，然后再找到rowid，以此定位到记录，所花的时间可能比全表扫描更长。</p>
 <p>全扫描是否高效取决于舍弃的数据块与所访问的数据块，这两者增加时，全表扫描效率会降低，如果数据很多的时候，上述情况下，索引可能会更有效.</p>
 <ul>
 <li>
 <p><strong>高水位线（HWM）</strong>，理解为历史最高水位线会更好，它一般只增不减，</p>
-<img src="/116e60bf6c57/before.png" class>
+<img src="/2021/09/learnOracle/before.png" class>
 <p>在经过一些数据变动后</p>
-<img src="/116e60bf6c57/after.png" class>
+<img src="/2021/09/learnOracle/after.png" class>
 <p>HWM是全表扫描的尽头，全表扫描总是从数据存储开始的点扫描到高水位线为止(<em>这里暂时不理解为什么全表扫描要用这个参数，用当前水位线不是更好？这个HWM参数可能会导致数据查询时间大大增加</em>)，即使在之后数据有了删改，甚至只剩下一条数据，进行一次全表扫描仍需扫描到HWM为止。</p>
 </li>
 </ul>
@@ -517,7 +517,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">43 分钟</span>
+    <span title="站点阅读时长">44 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -556,7 +556,9 @@
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
 
   
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
 <script src="/js/third-party/search/local-search.js"></script>
+
 
 
 
