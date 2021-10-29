@@ -1,6 +1,6 @@
 ---
 tags:
-  - littlethings
+  - things
 comments: true
 hidden: true
 date: 2021-10-13 09:38:55
