@@ -13,7 +13,7 @@ title: 买电影票的遭遇
 
 ​	在原先我就答应过大家请大家看 IMAX，正好有这么好的一部科幻片，不去看可惜了，于是我就请了大家去看
 
-<div style="width:70%;margin:auto">{% asset_img zhenxiang.jpg %}</div>
+<div style="width:60%;margin:auto">{% asset_img zhenxiang.jpg %}</div>
 
 算了不斥了
 
