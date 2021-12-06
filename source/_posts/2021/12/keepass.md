@@ -180,9 +180,9 @@ KeePass也可以自动在网页上输入用户名和密码
 
 移动端的设置也是一样，我使用的是StrongBox（IOS，3个月试用，之后收费），体验良好，还有密码审计，能够提醒密码是否泄露、密码重复情况等功能
 
-{% asset_img phone1.jpg %}
+<div style="width:40%;margin:auto">{% asset_img phone1.jpg %}</div>
 
-{% asset_img phone2.jpg %}
+<div style="width:40%;margin:auto">{% asset_img phone2.jpg %}</div>
 
 在移动端同样支持自动输入密码，
 
