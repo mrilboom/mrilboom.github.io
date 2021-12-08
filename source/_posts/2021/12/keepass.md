@@ -51,8 +51,8 @@ KeePass这款软件真心好用，有了这款软件我就再也不用担心被�
 ## 需要做的准备
 
 * 一台能联网的电脑
-* 一个坚果云账号（网址：https://www.jianguoyun.com）
-* KeePass客户端（网址：https://keepass.info/）
+* 一个坚果云账号（网址：https://www.jianguoyun.com ）
+* KeePass客户端（网址：https://keepass.info ）
 
 ### 坚果云账号
 
