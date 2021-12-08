@@ -1,6 +1,6 @@
 ---
 tags:
-  - null
+  - things
 mathjax: true
 comments: true
 hidden: false

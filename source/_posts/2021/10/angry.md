@@ -1,6 +1,6 @@
 ---
 tags:
-  - null
+  - things
 comments: true
 hidden: false
 date: 2021-10-27 15:57:24

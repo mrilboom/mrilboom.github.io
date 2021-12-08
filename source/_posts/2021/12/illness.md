@@ -1,6 +1,6 @@
 ---
 tags:
-  - littlethings
+  - things
 mathjax: true
 comments: true
 hidden: false
