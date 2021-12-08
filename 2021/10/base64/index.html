@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"mrilboom.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":260},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":null}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/./public/search.xml","localsearch":{"enable":"auto","trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="从事计算机这一领域的人员或多或少的会听说过 base64 这个编码方式，可能更多地听到的是 base64 加密解密，这两天刚好接触到了 base64 ，因此我又重温了一遍 base64 的内容。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="base 64 编码详解">
+<meta property="og:url" content="https://mrilboom.github.io/2021/10/base64/index.html">
+<meta property="og:site_name" content="mrilboom">
+<meta property="og:description" content="从事计算机这一领域的人员或多或少的会听说过 base64 这个编码方式，可能更多地听到的是 base64 加密解密，这两天刚好接触到了 base64 ，因此我又重温了一遍 base64 的内容。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mrilboom.github.io/2021/10/base64/coding.png">
+<meta property="article:published_time" content="2021-10-19T03:08:59.000Z">
+<meta property="article:modified_time" content="2021-12-08T03:51:55.243Z">
+<meta property="article:author" content="mrilboom">
+<meta property="article:tag" content="learn,mood">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mrilboom.github.io/2021/10/base64/coding.png">
+
+
+<link rel="canonical" href="https://mrilboom.github.io/2021/10/base64/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh_CN","comments":true,"permalink":"https://mrilboom.github.io/2021/10/base64/","path":"2021/10/base64/","title":"base 64 编码详解"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>base 64 编码详解 | mrilboom</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?a416304f849aead35183b98de78b26a2"></script>
+
+
+<link rel="dns-prefetch" href="https://comment.mrilboom.love/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="mrilboom" type="application/atom+xml">
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">mrilboom</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">welcome to mrilboom's world</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-comment"><a href="https://comment.mrilboom.love/ui" rel="noopener" target="_blank"><i class="fa fa-comment fa-fw"></i>评论管理</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">编码方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E7%A0%81%E8%A1%A8"><span class="nav-number">2.1.</span> <span class="nav-text">编码表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="nav-number">2.2.</span> <span class="nav-text">编码示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="mrilboom"
+      src="/images/Lute.jpg">
+  <p class="site-author-name" itemprop="name">mrilboom</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mrilboom" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;mrilboom" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:mrilboom@qq.com" title="E-Mail → mailto:mrilboom@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh_CN">
+    <link itemprop="mainEntityOfPage" href="https://mrilboom.github.io/2021/10/base64/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Lute.jpg">
+      <meta itemprop="name" content="mrilboom">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mrilboom">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          base 64 编码详解
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-10-19 11:08:59" itemprop="dateCreated datePublished" datetime="2021-10-19T11:08:59+08:00">2021-10-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-12-08 11:51:55" itemprop="dateModified" datetime="2021-12-08T11:51:55+08:00">2021-12-08</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">评论：</span>
+  
+    <a title="waline" href="/2021/10/base64/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/2021/10/base64/" data-xid="/2021/10/base64/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <hr>
+<p>从事计算机这一领域的人员或多或少的会听说过 base64 这个编码方式，可能更多地听到的是 base64 加密解密，这两天刚好接触到了 base64 ，因此我又重温了一遍 base64 的内容。<span id="more"></span></p>
+<hr>
+<h2 id="介绍"><a class="header-anchor" href="#介绍"></a>介绍</h2>
+<p>​	首先，base64 并不是一种加密方式，虽然它对于人类来说不可读，但是它的编码风格很有特色：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SXNhYWMgYW5kIGhpcyBtb3RoZXIgbGl2ZWQgYWxvbmUgaW4gYSBzbWFsbCBob3VzZSBvbiBhIGhpbGwuIElzYWFjIGtlcHQgdG8gaGltc2VsZiBkcmF3aW5nIHBpY3R1cmVzIGFuZCBwbGF5aW5nIHdpdGggaGlzIHRveXMgYXMgaGlzIG1vbSB3YXRjaGVkIENocmlzdGlhbiBicm9hZGNhc3RzIG9uIHRoZSB0ZWxldmlzaW9uLiBMaWZlIHdhcyBzaW1wbGUgYW5kIHRoZXkgd2VyZSBib3RoIGhhcHB5LiBUaGF0IHdhcyB1bnRpbCB0aGUgZGF5IElzYWFjJ3MgbW9tIGhlYXJkIGEgdm9pY2UgZnJvbSBhYm92ZToKCiJZb3VyIHNvbiBoYXMgYmVjb21lIGNvcnJ1cHRlZCBieSBzaW4uIEhlIG5lZWRzIHRvIGJlIHNhdmVkLiIKIkkgd2lsbCBkbyBteSBiZXN0IHRvIHNhdmUgaGltLCBteSBMb3JkLCIgSXNhYWMncyBtb3RoZXIgcmVwbGllZCwgcnVzaGluZyBpbnRvIElzYWFjJ3Mgcm9vbSwgcmVtb3ZpbmcgYWxsIHRoYXQgd2FzIGV2aWwgZnJvbSBoaXMgbGlmZS4uLg==</span><br></pre></td></tr></table></figure>
+<p>​	这串编码中只出现了大小写字母而且末尾有<code>=</code>,稍微了解过 base64 的人一眼就能看出用了 base64 编码，随便找个在线解码的网站复制一下解码就可以看到原文，因此 base64 对于数据的安全性来说没有任何的保障。</p>
+<p>​	既然 base64 没有加密的功能，而且它把好好的文字数据搞成这样乱七八糟，有什么意义呢？<br>
+​	base64 主要是为了计算机之间数据传输而设计的（尽管它将原数据编码后长度反而会增加三分之一），两台计算机之间传输数据，通过网线传入传出的肯定会是 0101 这样的二进制数据，因此接收方必须对这些数据进行解码，但是有时候这些数据中包含了一些控制字符，比如<code>ACK</code>、<code>NULL</code>等，这些字符不可打印，在文本传输的时候接收方可能会错误的解码，导致数据出现问题，因此有人就采用了base64 这一套解决方案，它将所有字符编码成可打印输出的字符，避免因为控制字符的问题而导致的文本乱码。</p>
+<h2 id="编码方式"><a class="header-anchor" href="#编码方式"></a>编码方式</h2>
+<h3 id="编码表"><a class="header-anchor" href="#编码表"></a>编码表</h3>
+<p>​	base64 之所以叫做64 ，是因为它选取了64个可打印字符进行编码，分别是大小写a-z，52个，0-9，10个，再加上<code>+</code>、<code>/</code>2个，一共64个字符。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">数值</th>
+<th style="text-align:center">字符</th>
+<th style="text-align:center">数值</th>
+<th style="text-align:center">字符</th>
+<th style="text-align:center">数值</th>
+<th style="text-align:center">字符</th>
+<th style="text-align:center">数值</th>
+<th style="text-align:center">字符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center">16</td>
+<td style="text-align:center">Q</td>
+<td style="text-align:center">32</td>
+<td style="text-align:center">g</td>
+<td style="text-align:center">48</td>
+<td style="text-align:center">w</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">B</td>
+<td style="text-align:center">17</td>
+<td style="text-align:center">R</td>
+<td style="text-align:center">33</td>
+<td style="text-align:center">h</td>
+<td style="text-align:center">49</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">C</td>
+<td style="text-align:center">18</td>
+<td style="text-align:center">S</td>
+<td style="text-align:center">34</td>
+<td style="text-align:center">i</td>
+<td style="text-align:center">50</td>
+<td style="text-align:center">y</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">D</td>
+<td style="text-align:center">19</td>
+<td style="text-align:center">T</td>
+<td style="text-align:center">35</td>
+<td style="text-align:center">j</td>
+<td style="text-align:center">51</td>
+<td style="text-align:center">z</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">E</td>
+<td style="text-align:center">20</td>
+<td style="text-align:center">U</td>
+<td style="text-align:center">36</td>
+<td style="text-align:center">k</td>
+<td style="text-align:center">52</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">F</td>
+<td style="text-align:center">21</td>
+<td style="text-align:center">V</td>
+<td style="text-align:center">37</td>
+<td style="text-align:center">l</td>
+<td style="text-align:center">53</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">G</td>
+<td style="text-align:center">22</td>
+<td style="text-align:center">W</td>
+<td style="text-align:center">38</td>
+<td style="text-align:center">m</td>
+<td style="text-align:center">54</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">H</td>
+<td style="text-align:center">23</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">39</td>
+<td style="text-align:center">n</td>
+<td style="text-align:center">55</td>
+<td style="text-align:center">3</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:center">I</td>
+<td style="text-align:center">24</td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center">40</td>
+<td style="text-align:center">o</td>
+<td style="text-align:center">56</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td style="text-align:center">J</td>
+<td style="text-align:center">25</td>
+<td style="text-align:center">Z</td>
+<td style="text-align:center">41</td>
+<td style="text-align:center">p</td>
+<td style="text-align:center">57</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">K</td>
+<td style="text-align:center">26</td>
+<td style="text-align:center">a</td>
+<td style="text-align:center">42</td>
+<td style="text-align:center">q</td>
+<td style="text-align:center">58</td>
+<td style="text-align:center">6</td>
+</tr>
+<tr>
+<td style="text-align:center">11</td>
+<td style="text-align:center">L</td>
+<td style="text-align:center">27</td>
+<td style="text-align:center">b</td>
+<td style="text-align:center">43</td>
+<td style="text-align:center">r</td>
+<td style="text-align:center">59</td>
+<td style="text-align:center">7</td>
+</tr>
+<tr>
+<td style="text-align:center">12</td>
+<td style="text-align:center">M</td>
+<td style="text-align:center">28</td>
+<td style="text-align:center">c</td>
+<td style="text-align:center">44</td>
+<td style="text-align:center">s</td>
+<td style="text-align:center">60</td>
+<td style="text-align:center">8</td>
+</tr>
+<tr>
+<td style="text-align:center">13</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center">29</td>
+<td style="text-align:center">d</td>
+<td style="text-align:center">45</td>
+<td style="text-align:center">t</td>
+<td style="text-align:center">61</td>
+<td style="text-align:center">9</td>
+</tr>
+<tr>
+<td style="text-align:center">14</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">30</td>
+<td style="text-align:center">e</td>
+<td style="text-align:center">46</td>
+<td style="text-align:center">u</td>
+<td style="text-align:center">62</td>
+<td style="text-align:center">+</td>
+</tr>
+<tr>
+<td style="text-align:center">15</td>
+<td style="text-align:center">P</td>
+<td style="text-align:center">31</td>
+<td style="text-align:center">f</td>
+<td style="text-align:center">47</td>
+<td style="text-align:center">v</td>
+<td style="text-align:center">63</td>
+<td style="text-align:center">/</td>
+</tr>
+</tbody>
+</table>
+<h3 id="编码示例"><a class="header-anchor" href="#编码示例"></a>编码示例</h3>
+<p>来看一下它的编码方式：</p>
+<img src="/2021/10/base64/coding.png" class>
+<p><font size="2"><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2008/06/base64.html">阮一峰 | Base64 笔记</a></font></p>
+<p>首先将要编码的数据转换成二进制的形式，之后按照 6 个为一组进行分割，将分割后的二进制转换为十进制，再查表找到对应的字符即可，例如<code>Man</code>转换为二进制为</p>
+<table>
+<thead>
+<tr>
+<th>0</th>
+<th>1</th>
+<th>0</th>
+<th>0</th>
+<th>1</th>
+<th>1</th>
+<th>0</th>
+<th>1</th>
+<th>*</th>
+<th>0</th>
+<th>1</th>
+<th>1</th>
+<th>0</th>
+<th>0</th>
+<th>0</th>
+<th>0</th>
+<th>1</th>
+<th>*</th>
+<th>0</th>
+<th>1</th>
+<th>1</th>
+<th>0</th>
+<th>1</th>
+<th>1</th>
+<th>1</th>
+<th>0</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+<p>分割之后变为</p>
+<table>
+<thead>
+<tr>
+<th>0</th>
+<th>1</th>
+<th>0</th>
+<th>0</th>
+<th>1</th>
+<th>1</th>
+<th>*</th>
+<th>0</th>
+<th>1</th>
+<th>0</th>
+<th>1</th>
+<th>1</th>
+<th>0</th>
+<th>*</th>
+<th>0</th>
+<th>0</th>
+<th>0</th>
+<th>1</th>
+<th>0</th>
+<th>1</th>
+<th>*</th>
+<th>1</th>
+<th>0</th>
+<th>1</th>
+<th>1</th>
+<th>1</th>
+<th>0</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+<p>对应的字符为</p>
+<table>
+<thead>
+<tr>
+<th>19</th>
+<th>22</th>
+<th>5</th>
+<th>46</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T</td>
+<td>W</td>
+<td>F</td>
+<td>u</td>
+</tr>
+</tbody>
+</table>
+<p>它其实将原来的 3 个字节变成了 4 个字节，数据长度增加了三分之一。</p>
+<p>因为不是编码前后等长对应的，有时候会出现不够划分的情况，比如<code>M</code>会被分为<code>0  1  0  0  1  1  *  0  1</code>,因此规定长度不够的一律低位补 0，因此M会被编码为<code>TQ</code>,但是 base64 还有一个规定，编码之后不够 4 个字节的在末尾补足<code>=</code>，使得编码后的数据能够 4 个一组进行划分，方便了之后的解码。因此实际上 base64 编码表有 65 个。这里的<code>=</code>也是 base64 编码最大的特色，因此以后如果看到一串乱七八糟的大小写混合的字符以<code>=</code>结尾，不妨试一试 base64 解码。</p>
+<h2 id="参考资料"><a class="header-anchor" href="#参考资料"></a>参考资料</h2>
+<p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2008/06/base64.html">阮一峰 | Base64笔记</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer"><div>
+    
+        <div style="font-family: monospace;text-align:center;color: #ca61ea;font-size:16px;">------ Everything Ends------</div>
+    
+</div>
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>mrilboom
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://mrilboom.github.io/2021/10/base64/" title="base 64 编码详解">https://mrilboom.github.io/2021/10/base64/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/10/baseKnowledge/" rel="prev" title="一些金融方面的基础知识记录">
+                  <i class="fa fa-chevron-left"></i> 一些金融方面的基础知识记录
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/10/angry/" rel="next" title="买电影票的遭遇">
+                  买电影票的遭遇 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mrilboom</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">34k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:02</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">powered py <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 
+  </div><script color="0,0,255" opacity="0.5" zIndex="-1" count="40" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+  <div class="beian">
+  <font size=1><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">浙ICP备2021026684号 </a>
+    </font>
+  </div>
+    </div>
+  </footer>
+
+  
+  <script size="400" alpha="0.5" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://comment.mrilboom.love/","placeholder":"支持匿名提交哦（o´・ェ・｀o）","avatar":"retro","pageSize":10,"visitor":false,"comment_count":true,"requiredFields":[],"meta":["nick","mail","link"],"requiredMeta":[],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","dark":"body.darkmode--activated","el":"#waline-comments","path":"/2021/10/base64/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() => 
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => {
+    new Waline(CONFIG.waline);
+  });
+});
+</script><script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '1%',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+
+</body>
+</html>
