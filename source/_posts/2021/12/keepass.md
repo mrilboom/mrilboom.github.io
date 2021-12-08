@@ -104,9 +104,9 @@ KeePass这款软件真心好用，有了这款软件我就再也不用担心被�
 
 ### 文件链接
 
-[KeePass2.4.9](http://file.mrilboom.love/KeePass-2.49.zip)
+KeePass2.4.9:    http://file.mrilboom.love/KeePass-2.49.zip
 
-[中文语言包](http://file.mrilboom.love/KeePass-2.46-Chinese_Simplified.zip)
+中文语言包:  http://file.mrilboom.love/KeePass-2.46-Chinese_Simplified.zip
 
 ### 数据库创建、初始设置
 
@@ -126,7 +126,7 @@ KeePass这款软件真心好用，有了这款软件我就再也不用担心被�
 
 {% asset_img url.png %}
 
-网址为https://dav.jianguoyun.com/dav/KeePass/KeePass.kdbx (即刚才.kdbx文件上传的位置)
+网址为`https://dav.jianguoyun.com/dav/KeePass/KeePass.kdbx`(即刚才.kdbx文件上传的位置)
 
 用户名即坚果云账号，可以在之前开启WebDAV功能界面得到
 
