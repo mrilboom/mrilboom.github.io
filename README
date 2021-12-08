@@ -1,0 +1,13 @@
+Node.js v12.22.5.
+npm@7.21.1
+nvm 0.38.0
+查看有哪些 node 版本
+nvm ls-remote
+查看本地node版本
+nvm list
+版本切换
+nvm use [版本号]
+amd64
+
+
+nginx docker部署，评论系统树莓派部署
