@@ -6,7 +6,7 @@
   <link href="https://mrilboom.github.io/atom.xml" rel="self"/>
   
   <link href="https://mrilboom.github.io/"/>
-  <updated>2021-12-08T06:31:08.004Z</updated>
+  <updated>2021-12-09T06:34:11.974Z</updated>
   <id>https://mrilboom.github.io/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>基本的SQL语法</title>
+    <link href="https://mrilboom.github.io/2021/12/SQL-base/"/>
+    <id>https://mrilboom.github.io/2021/12/SQL-base/</id>
+    <published>2021-12-09T06:16:10.000Z</published>
+    <updated>2021-12-09T06:34:11.974Z</updated>
+    
+    <content type="html"><![CDATA[<hr><p>这里记录了一些非常基本的增删改查语法，由于现在为止其实用的不多，每次用到都得回忆查一遍，查出来也是各种各样都有，需要花费时间剔除很多无效信息，不如直接列出来以便查阅。<span id="more"></span></p><hr><h2 id="INSERT"><a class="header-anchor" href="#INSERT"></a>INSERT</h2><p>INSERT INTO <code>&lt;TABLE&gt;</code>[(<code>&lt;COL1&gt;</code>,<code>&lt;COL2&gt;</code>,…<code>&lt;COLn&gt;</code>)] VALUES(<code>&lt;V1&gt;</code>,<code>&lt;V2&gt;</code>…<code>&lt;Vn&gt;</code>)</p><p>INSERT INTO <code>&lt;TABLE&gt;</code>[(<code>&lt;COL1&gt;</code>,<code>&lt;COL2&gt;</code>,…<code>&lt;COLn&gt;</code>)] (SUB QUERY)</p><h2 id="DELETE"><a class="header-anchor" href="#DELETE"></a>DELETE</h2><p>DELETE FROM <code>&lt;TABLE&gt;</code> WHERE <code>&lt;CONDITION&gt;</code></p><h2 id="UPDATE"><a class="header-anchor" href="#UPDATE"></a>UPDATE</h2><p>UPDATE <code>&lt;TABLE&gt;</code> SET <code>&lt;COL1&gt;</code>=<code>&lt;V1&gt;</code>,<code>&lt;COL2&gt;</code>=<code>&lt;V2&gt;</code>…<code>&lt;COLn&gt;</code>=<code>&lt;Vn&gt;</code>  WHERE <code>&lt;CONDITION&gt;</code></p><h2 id="SELECT"><a class="header-anchor" href="#SELECT"></a>SELECT</h2><p>SELECT <code>&lt;COL1&gt;</code>,<code>&lt;COL2&gt;</code>…<code>&lt;COLn&gt;</code> FROM <code>&lt;TABLE&gt;</code> WHERE <code>&lt;CONDITION&gt;</code></p>]]></content>
+    
+    
+    <summary type="html">&lt;hr&gt;
+&lt;p&gt;这里记录了一些非常基本的增删改查语法，由于现在为止其实用的不多，每次用到都得回忆查一遍，查出来也是各种各样都有，需要花费时间剔除很多无效信息，不如直接列出来以便查阅。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="Oracle" scheme="https://mrilboom.github.io/tags/Oracle/"/>
+    
+  </entry>
   
   <entry>
     <title>免费开源密码管理神器——KeePass</title>
