@@ -6,7 +6,7 @@
   <link href="https://mrilboom.github.io/atom.xml" rel="self"/>
   
   <link href="https://mrilboom.github.io/"/>
-  <updated>2021-12-09T06:34:11.974Z</updated>
+  <updated>2021-12-10T09:16:45.117Z</updated>
   <id>https://mrilboom.github.io/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Oracle EXISTS用法</title>
+    <link href="https://mrilboom.github.io/2021/12/exist/"/>
+    <id>https://mrilboom.github.io/2021/12/exist/</id>
+    <published>2021-12-10T07:53:06.000Z</published>
+    <updated>2021-12-10T09:16:45.117Z</updated>
+    
+    <content type="html"><![CDATA[<hr><p>​昨天在写一段Oracle SQL的时候，本来想直接用SQL写的，后面遇到了点问题，不了解该怎么写下去了，于是就换成了用存储过程来写，搞了个游标变量，然后搞了个循环搞定了，今天导师指导的时候看到了，指出了问题。<span id="more"></span></p><hr><h2 id="SQL-EXISTS"><a class="header-anchor" href="#SQL-EXISTS"></a>SQL EXISTS</h2><p>SQL是关于集合的，要以面向集合的思维方式来思考。在编写代码时，我似乎一点也没想到这个，搞一个变量，然后开一个循环开始按记录来修改。还是要转变一下思路，从集合角度考虑。</p><p>EXCISTS用法直接写例子吧：</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> t1 <span class="keyword">where</span> <span class="keyword">exists</span> ( <span class="keyword">select</span> <span class="keyword">null</span> <span class="keyword">from</span> t2 <span class="keyword">where</span> y <span class="operator">=</span> x )</span><br></pre></td></tr></table></figure><p>这里的用法相当于运用循环控制结构后的如下语句：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">for x in ( select * from t1 )    </span><br><span class="line">loop       </span><br><span class="line">    if ( exists ( select null from t2 where y = x.x )       then           </span><br><span class="line">    OUTPUT THE RECORD       </span><br><span class="line">end if    </span><br><span class="line">end loop</span><br></pre></td></tr></table></figure><p>思路有点奇特</p>]]></content>
+    
+    
+    <summary type="html">&lt;hr&gt;
+&lt;p&gt;​		昨天在写一段Oracle SQL的时候，本来想直接用SQL写的，后面遇到了点问题，不了解该怎么写下去了，于是就换成了用存储过程来写，搞了个游标变量，然后搞了个循环搞定了，今天导师指导的时候看到了，指出了问题。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="Oracle" scheme="https://mrilboom.github.io/tags/Oracle/"/>
+    
+  </entry>
   
   <entry>
     <title>基本的SQL语法</title>
