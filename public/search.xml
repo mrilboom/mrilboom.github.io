@@ -4,6 +4,27 @@
   
     
     <entry>
+      <title>论文理解 XiangBai——【CVPR2018】Multi-Oriented Scene Text Detection via Corner Localization and Region Segmentation</title>
+      <link href="/2021/12/corner/"/>
+      <url>/2021/12/corner/</url>
+      
+        <content type="html"><![CDATA[<hr><p>Multi-Oriented Scene Text Detection via Corner Localization and Region Segmentation<br>基于角点定位和区域分割的多向场景文本检测<span id="more"></span></p><hr><h1>Multi-Oriented Scene Text Detection via Corner Localization and Region Segmentation</h1><p>目前场景文字检测（scene text detection ）基本分为两类：</p><ul><li>将其作为目标检测来进行训练学习（文字扭曲、旋转的问题无法很好的解决）</li><li>将其直接作为文本分割的任务来进行（需要复杂的后处理）</li></ul><p>该论文提出结合两个方法</p><p>从框的4个边角（左上，右上，左下，右下）出发</p><img src="/2021/12/corner/a.png" class><p>大致思路：</p><p>​找出边角点，同时找出可能的边角区域（positionsensitive segmentation maps），两者进行结合对比，生成候选框，再由NMS进行细化处理</p><hr><p>由此可以<strong>解决文本倾斜的问题，文本旋转问题得到解决</strong>，</p><p>（吹：）不管是单个文字还是单词还是句子，都可以分割的很好。</p><p>贡献：提出了一种全新的端到端方法，结合了目标检测和分割的理念。</p><p>提出了一种可以应对任意朝向的ROI池化方式</p><p>可以处理多种朝向的场景文本</p><p>SOTA</p><p>结合多方面，Related Work，</p><p>基于回归的文本检测： 关注的是点</p><p>基于分割的文本检测：用提出的Rotated Position-Sensitive Average ROI Pooling层处理</p><p>基于边角点的通用目标检测，敏感区域划分</p><p>网络设计：</p><img src="/2021/12/corner/b.png" class><p>全卷积网络进行  特征提取、边角点检测、敏感区域划分</p><p>backbone采用VGG-16</p><p>考虑到以下几个方面：</p><ul><li>检测目标尺寸差异大（例如一个字和一大行文本）</li><li>文字背景复杂</li></ul><p>FPN和DSSD在这两个方面做的挺不错，因此也采用了FPN/DSSD的结构来做处理</p><p>标签生成：</p><p>旋转矩形的坐标如何确定？</p><p>给定4个顶点</p><ul><li>左上左下的坐标，x坐标必须要小于右上右下的坐标</li><li>左上右上的坐标，y坐标必须要小于左下右下的坐标</li></ul><p>这样4个点就能被确定好自己的分类位置</p><h2 id="参考资料"><a class="header-anchor" href="#参考资料"></a>参考资料</h2><p><a href="https://arxiv.org/abs/1802.08948">Multi-Oriented Scene Text Detection via Corner Localization and Region Segmentation</a><br><font size="4" face="幼圆" color="lightblue">to be continue···</font></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Machine Learning </tag>
+            
+            <tag> Paper </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Oracle EXISTS用法</title>
       <link href="/2021/12/exist/"/>
       <url>/2021/12/exist/</url>
