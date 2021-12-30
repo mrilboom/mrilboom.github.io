@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://mrilboom.github.io/2021/12/corner/a.png">
 <meta property="og:image" content="https://mrilboom.github.io/2021/12/corner/b.png">
 <meta property="article:published_time" content="2021-12-24T08:38:17.000Z">
-<meta property="article:modified_time" content="2021-12-24T08:58:42.349Z">
+<meta property="article:modified_time" content="2021-12-30T07:43:38.889Z">
 <meta property="article:author" content="mrilboom">
 <meta property="article:tag" content="Machine Learning">
 <meta property="article:tag" content="Paper">
@@ -253,9 +253,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2021-12-24 16:38:17 / 修改时间：16:58:42" itemprop="dateCreated datePublished" datetime="2021-12-24T16:38:17+08:00">2021-12-24</time>
+      <time title="创建时间：2021-12-24 16:38:17" itemprop="dateCreated datePublished" datetime="2021-12-24T16:38:17+08:00">2021-12-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-12-30 15:43:38" itemprop="dateModified" datetime="2021-12-30T15:43:38+08:00">2021-12-30</time>
     </span>
 
   
@@ -286,7 +292,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>919</span>
+      <span>1.3k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -340,6 +346,11 @@
 <li>文字背景复杂</li>
 </ul>
 <p>FPN和DSSD在这两个方面做的挺不错，因此也采用了FPN/DSSD的结构来做处理</p>
+<p>实现细节：</p>
+<p>将vgg的全连接层（fc6、fc7）换为卷积层（conv6、conv7），然后在后面加了几层卷积层(conv8, conv9, conv10, conv11)以便扩大特征抽取的感受野</p>
+<p>之后加了6个DSSD中的反卷积块，然后为了让模型适应多尺度数据，对一些模块的数据进行了级联处理</p>
+<p>最后将产生的F3, F4, F7, F8, F9, F10 和 F11进行卷积和反卷积处理，为之后的corner detect进行准备</p>
+<p>边角检测方面，每个角点都可能有4种情况，左上左下右上右下，而且一个点的位置可能是同时具有多个属性，比如一个点为A框的左上点，同时也是B框的右下点。角点检测输出两个分支，score分支和offset分支，其中score分支是用于检测区域内有无角点存在。score和offset分支输出分别为k × q × 2和k × q × 4，q为角点的类型数，一般都为矩形，所以为4.</p>
 <p>标签生成：</p>
 <p>旋转矩形的坐标如何确定？</p>
 <p>给定4个顶点</p>
@@ -430,7 +441,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:05</span>
+    <span title="站点阅读时长">1:06</span>
   </span>
 </div>
 <div class="busuanzi-count">
