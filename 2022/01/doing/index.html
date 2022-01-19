@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"mrilboom.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":260},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/./public/search.xml","localsearch":{"enable":"auto","trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="最近一直忙于做毕设，学了很多，但是发现自己的知识储备还是不太够，毕竟深度学习这一方面确实涉及的范围太广了，真正实现起来还是需要耗费大量时间">
+<meta property="og:type" content="article">
+<meta property="og:title" content="最近做的一些毕设工作">
+<meta property="og:url" content="https://mrilboom.github.io/2022/01/doing/index.html">
+<meta property="og:site_name" content="mrilboom">
+<meta property="og:description" content="最近一直忙于做毕设，学了很多，但是发现自己的知识储备还是不太够，毕竟深度学习这一方面确实涉及的范围太广了，真正实现起来还是需要耗费大量时间">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mrilboom.github.io/2022/01/doing/20220112150429048.png">
+<meta property="og:image" content="https://mrilboom.github.io/2022/01/doing/20220104144434926.png">
+<meta property="og:image" content="https://mrilboom.github.io/2022/01/doing/20220113130930812.png">
+<meta property="og:image" content="https://mrilboom.github.io/2022/01/doing/20211223100819365.png">
+<meta property="og:image" content="https://mrilboom.github.io/2022/01/doing/20211223103110135.png">
+<meta property="article:published_time" content="2022-01-19T03:12:29.000Z">
+<meta property="article:modified_time" content="2022-01-19T03:29:50.141Z">
+<meta property="article:author" content="mrilboom">
+<meta property="article:tag" content="littlethings">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mrilboom.github.io/2022/01/doing/20220112150429048.png">
+
+
+<link rel="canonical" href="https://mrilboom.github.io/2022/01/doing/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh_CN","comments":true,"permalink":"https://mrilboom.github.io/2022/01/doing/","path":"2022/01/doing/","title":"最近做的一些毕设工作"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>最近做的一些毕设工作 | mrilboom</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?a416304f849aead35183b98de78b26a2"></script>
+
+
+<link rel="dns-prefetch" href="https://comment.mrilboom.love/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="mrilboom" type="application/atom+xml">
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">mrilboom</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">welcome to mrilboom's world</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-comment"><a href="https://comment.mrilboom.love/ui" rel="noopener" target="_blank"><i class="fa fa-comment fa-fw"></i>评论管理</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">目标检测部分</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">过程总结——CRNN部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E9%83%A8%E5%88%86%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">环境部分：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E9%83%A8%E5%88%86%EF%BC%9A"><span class="nav-number">2.2.</span> <span class="nav-text">网络部分：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83%E9%83%A8%E5%88%86%EF%BC%9A"><span class="nav-number">2.3.</span> <span class="nav-text">训练部分：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86"><span class="nav-number">2.3.1.</span> <span class="nav-text">数据处理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">遇到的问题</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="mrilboom"
+      src="/images/Lute.jpg">
+  <p class="site-author-name" itemprop="name">mrilboom</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mrilboom" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;mrilboom" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:mrilboom@qq.com" title="E-Mail → mailto:mrilboom@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh_CN">
+    <link itemprop="mainEntityOfPage" href="https://mrilboom.github.io/2022/01/doing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Lute.jpg">
+      <meta itemprop="name" content="mrilboom">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mrilboom">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          最近做的一些毕设工作
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-01-19 11:12:29 / 修改时间：11:29:50" itemprop="dateCreated datePublished" datetime="2022-01-19T11:12:29+08:00">2022-01-19</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">评论：</span>
+  
+    <a title="waline" href="/2022/01/doing/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/2022/01/doing/" data-xid="/2022/01/doing/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>9 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <hr>
+<p>最近一直忙于做毕设，学了很多，但是发现自己的知识储备还是不太够，毕竟深度学习这一方面确实涉及的范围太广了，真正实现起来还是需要耗费大量时间 <span id="more"></span></p>
+<hr>
+<blockquote>
+<p>真正端到端的识别网络：<br>
+masktextspotterv3<br>
+没有使用，数据集太少了，使用起来会很差，暂时不考虑</p>
+</blockquote>
+<blockquote>
+<p>百度飞桨平台ppocr 教学指导视频<br>
+<a target="_blank" rel="noopener" href="https://aistudio.baidu.com/aistudio/education/group/info/25207">https://aistudio.baidu.com/aistudio/education/group/info/25207</a></p>
+</blockquote>
+<h1>目标检测部分</h1>
+<p>目标检测看了很多，开始想用corner做的，但是后来看到了这个DBnet，感觉好像还不错，因为速度快，同时检测的难度也不会特别高，因此最终决定使用了DB</p>
+<p>在使用github源码编译时发现编译失败，windows平台编译失败，需要下载vs的buildtool，下载之后添加了路径，之后报错AT_CHECK 未定义，查看c++源码发现AT_CKECK在源码中并没有定义，查阅资料发现将TORCH中的TORCH_CHECK取别名def为AT_CHECK即可</p>
+<p>然而因为官方库实现较为复杂，代码可读性不高，因此参考了另一个库</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/WenmuZhou/DBNet.pytorch">https://github.com/WenmuZhou/DBNet.pytorch</a></p>
+<p>该库的实现可读性更高，且支持python使用</p>
+<p>在对训练好的模型进行测试时，发现1核2GB内存的腾讯云服务器在使用DBNET判断单张图片时，耗费的时间接近3.5S，时间太长了，因此对infer代码进行了分析：</p>
+<img src="/2022/01/doing/20220112150429048.png" class>
+<p>原先以为是因为opencv读取图像的效率低导致的，结果发现占大头的还是网络，网络总参数为1.85M，但是里面的计算量很高，</p>
+<img src="/2022/01/doing/20220104144434926.png" class>
+<p>DBNet的网络可总体分为3部分，backbone、neck、head</p>
+<p>backbone是特征提取网络，可用resnet18、resnet50、mobilenet等实现，neck则是特征金字塔结构的网络，而最后的head则是要先用将1/4的feature map 复原到完整的大小，然后通过进一步处理得到threshhold map和probability map（bitmap），最后将两张图片结合得到approximate binary map，需要注意的是，在实际推理期间，并不需要生成approximate binary map和threshhold map，这两个map都是为loss服务的，所以在infer时，只需要生成概率图bitmap即可，这也是DBNet速度快的原因之一。</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1xf4y1p7Gf?p=2">https://www.bilibili.com/video/BV1xf4y1p7Gf?p=2</a></p>
+<p>使用了ICDAR2015的数据先训练模型，然后再以该预训练模型用发票数据集进行训练</p>
+<p>发票数据集中数据标注也不是特别规范，</p>
+<p>DBNet训练结果：</p>
+<img src="/2022/01/doing/20220113130930812.png" class>
+<p>DBNET   FPN结构中用的卷积是Deformable conv</p>
+<p>在进行推理时，使用了直方图均衡化对图像进行处理</p>
+
+<p>这是原图，可以看到这张车票中的打印文字颜色部分很淡，因此我在模型推理前做了一下直方图均衡化，看看图像增强后的推理结果，但是效果似乎并不好。</p>
+<h1>过程总结——CRNN部分</h1>
+<p>思路是先进行文本检测，再进行文本识别。之所以没有进行端到端的检测识别，是因为考虑到文本的识别比较依赖与数据集的质量，如果进行完全的端到端的识别，在数据集数量不够的情况下，效果很难提升。虽然模型大小可能会减少很多，但是精度可能会大打折扣。</p>
+<p>有个很好的办法可以将模型大小再次减少不少，就是将输出的类别减少，其实发票数据集所需的文字alphabet不需要太多，可能只需要几百个就可以了，用的最多的就是一些大小写字母、数字和标点符号，以及百来个版面上用的文字信息，这样的话，最后进行linear连接的时候，参数的数量能够减少3M左右。</p>
+<p>目前模型概况：</p>
+<blockquote>
+<p>CRNN  mobilenet V3  +  RNN</p>
+<p>===================================================================<br>
+Layer (type:depth-idx)                   Output Shape              Param #</p>
+<p>=====================================================================<br>
+├─CNN: 1-1                                [-1, 512, 1, 40]  	        –<br>
+|    └─Conv2d: 2-1                       [-1, 16, 16, 80]          144<br>
+|    └─BatchNorm2d: 2-2            [-1, 16, 16, 80]          32<br>
+|    └─hswish: 2-3                        [-1, 16, 16, 80]          –<br>
+|    └─Sequential: 2-4                  [-1, 160, 1, 40]          –<br>
+|    |    └─Block: 3-1                   [-1, 16, 16, 80]          752<br>
+|    |    └─Block: 3-2                   [-1, 24, 8, 40]           3,440<br>
+|    |    └─Block: 3-3                   [-1, 24, 8, 40]           4,440<br>
+|    |    └─Block: 3-4                   [-1, 40, 4, 40]           7,676<br>
+|    |    └─Block: 3-5                   [-1, 40, 4, 40]           14,060<br>
+|    |    └─Block: 3-6                   [-1, 40, 4, 40]           14,060<br>
+|    |    └─Block: 3-7                   [-1, 80, 2, 40]           32,080<br>
+|    |    └─Block: 3-8                   [-1, 80, 2, 40]           34,760<br>
+|    |    └─Block: 3-9                   [-1, 80, 2, 40]           31,992<br>
+|    |    └─Block: 3-10                  [-1, 80, 2, 40]           31,992<br>
+|    |    └─Block: 3-11                  [-1, 112, 2, 40]          114,360<br>
+|    |    └─Block: 3-12                  [-1, 112, 2, 40]          166,040<br>
+|    |    └─Block: 3-13                  [-1, 160, 2, 40]          234,032<br>
+|    |    └─Block: 3-14                  [-1, 160, 1, 40]          248,048<br>
+|    |    └─Block: 3-15                  [-1, 160, 1, 40]          348,560<br>
+|    └─Conv2d: 2-5                       [-1, 512, 1, 40]          81,920<br>
+|    └─BatchNorm2d: 2-6                  [-1, 512, 1, 40]          1,024<br>
+|    └─hswish: 2-7                       [-1, 512, 1, 40]          –<br>
+├─Sequential: 1-2                        [-1, 2, 5990]             –<br>
+|    └─RNN: 2-8                          [-1, 2, 5990]             –<br>
+|    |    └─LSTM: 3-16                   [-1, 2, 512]              1,576,960<br>
+|    |    └─Linear: 3-17                 [-1, 512]                 262,656<br>
+|    |    └─LSTM: 3-18                   [-1, 2, 512]              1,576,960<br>
+|    |    └─Linear: 3-19                 [-1, 5990]                3,072,870</p>
+<p>=======================================================<br>
+Total params: 7,858,858<br>
+Trainable params: 7,858,858<br>
+Non-trainable params: 0<br>
+Total mult-adds (M): 110.31</p>
+<p>========================================================<br>
+Input size (MB): 0.02<br>
+Forward/backward pass size (MB): 16.30<br>
+Params size (MB): 29.98<br>
+Estimated Total Size (MB): 46.29</p>
+<p>========================================================</p>
+</blockquote>
+<p>识别精度不高，可以考虑关键词匹配，例如识别出</p>
+<h2 id="环境部分："><a class="header-anchor" href="#环境部分："></a>环境部分：</h2>
+<p>​	环境需求：</p>
+<ul>
+<li>OpenCV-python</li>
+<li>PyTorch 1.8.0</li>
+<li>lmdb(一个基于内存映射的key-value数据库，用于打包存放训练或是测试数据)</li>
+</ul>
+<p>​			文字检测部分考虑使用DB Net，DBNet检测速度快，先进性测试看看效果</p>
+<h2 id="网络部分："><a class="header-anchor" href="#网络部分："></a>网络部分：</h2>
+<p>网络为了尽量将模型参数减少，将crnn中的cnn从原先的VGG-16改成了mobilenetv3,网络复杂度减少了许多，从生成的pytorch模型pth文件大小就可以看出来。</p>
+<h2 id="训练部分："><a class="header-anchor" href="#训练部分："></a>训练部分：</h2>
+<h3 id="数据处理"><a class="header-anchor" href="#数据处理"></a>数据处理</h3>
+<p>数据集采用的是2021年ccf出租车发票识别比赛的数据集</p>
+<p>里面分为两train和test两个部分，train里面为labelme格式的json文件和与其对应的原图，图像为整张地发票，json文件中标注出了图像中的文本位置以及其文本标签。</p>
+<p>使用的alphabet   把其中的全角冒号<code>：</code>删除，用半角冒号<code>:</code>，括号也是同理，</p>
+<p>test中的图像为截取出来的文本的图片，没有标签。</p>
+<p>需要对crnn中的数据进行处理</p>
+<p>因此写了一个python脚本将检测文本的位置信息以及文本内容解析出来，通过cv2裁剪出来并保存。将标签提取到label文件中，并附上对应的图像路径。</p>
+<p>之后便得到了一个存放图片的文件夹以及一个存放对应图像路径以及标签的文件，编写脚本，将标签与图像读取出来，以kv方式存放，label为k，图像的数据为v。在写入时，出现了一个问题</p>
+<p><code>TypeError: Won't implicitly convert Unicode to bytes; use .encode()</code></p>
+<p>lmdb数据库不会自动将将Unicode格式编码，因此存放数据时，必须手动将文件进行编码，否则将会一直报错。其中key和value都需要进行编码。</p>
+<p>一开始从原有的数据集进行训练，数据量比较小，一共3400张图片左右，训练之后发现准确率上升到50左右就已经到顶了，个人分析，首先就是数据集量太少了，其次是因为这里的数据集质量比较低，这些图片都是从原先整张图像中裁剪出来的，而发票中的字又很小，可能原先一张600×800像素的发票图片，裁剪出来的文字大小只有20×23，因此这里虽然又3400多张图片但是实际像素勉强合格的图片实际上只有2000多张（横向的width大于60的情况下）。</p>
+<p>这50多的准确率实在是太低，因此采用了预训练模型的方法，先用通用的文字识别数据集进行训练，训练到一定成都之后再将数据集切换到发票数据集，这么做了之后识别的准确率提高到了60左右，但是仍然有点问题。后面去询问导师，导师说可以考虑对数据集进行扩充，采用数据增广的方式。我将原先的图像随机进行了一些透视变换、高斯模糊等处理，这样之后数据集扩充了2倍，一共来到了8000左右，经过这样几个处理，识别的准确率到达了70左右之后就不再继续上升了。</p>
+<p>考虑到发票识别中的文字不会出现很多，因此我尝试将原先数据集大量增广，将数据扩大到了原来的50倍，做了一些透视变换之后感觉也差不多，先训练着试试吧</p>
+<p>出租汽车发票识别具有其特殊性，总体来说可以分为两部分：版面部分和数据部分，其中版面部分是固定的，而数据部分是不定的，其中的难点就是图形的干扰，发票中存在许多印章，印章很有可能会将数据覆盖，增加了识别的不确定性，同时数据部分和版面部分不一定完全对正，有可能文字部分的数据会有偏移，严重的情况下会出现文字部分与版面重叠的情况，这种情况下，人眼也难以识别，很有可能会导致识别出现问题。</p>
+<h1>遇到的问题</h1>
+<p>使用gpu训练，torch版本使用了1.10.1，似乎不支持cuda，改成1.8之后可以使用gpu进行训练了</p>
+<p>在服务器上使用cpu进行训练时发现数据集太大，导致无法解压，查看磁盘空间<code>df -h</code>，磁盘空间还够，经检查发现是索引节点不够了，<code>df -i</code>，文件中全是corp之后的图片，一共360多万张。转到windows，使用windows准备训练数据集，发现效率低下，全部的数据需要4小时左右才能写入数据库。</p>
+<p>使用lmdb创建数据集进行使用时，首先要开辟一块lmdb环境，需要用到<code>lmdb.open()</code>这个函数，里面有个mapsize参数，就是开辟空间的大小，windows与linux下这两个参数会有不同</p>
+<p>开始的时候用的是linux，linux下开辟了一个1T的空间，</p>
+<p><code> env = lmdb.open(outputPath, map_size=1099511627776)</code></p>
+<img src="/2022/01/doing/20211223100819365.png" class>
+<p>可以看到这里是linux中VIRT增加到了1T，也就是程序申请了1T的虚拟内存，但是我这台机子是腾讯云学生机，磁盘也就60G，在linux系统下，lmdb申请的空间大小并不会实际的在系统中开辟，在程序执行结束之后，查看数据库文件，发现大小也并没有1T,占用空间约为未打包的数据集的大小。</p>
+<p>在windows则显得不同，在将同一段代码放到windows中运行时，程序却报错了，</p>
+<img src="/2022/01/doing/20211223103110135.png" class>
+<p>一堆乱码，后面费了很大的劲查询资料才发现是因为系统空间不足了，开辟1T的空间，但是系统磁盘不够，于是报错，于是我就调小点，调了大概70g左右，这个果然奏效了，然后等程序运行结束一看，生成的数据库文件竟然真的足足70G，我原以为这个只是开辟了一个临时空间，在运行结束后会将资源释放，结果并不是我想的那样。在windows的情况下，输入的mapsize大小就是最后生成数据库文件的大小，因此在windows下，mapsize需要特别注意的考虑一下，不然之后处理起来会很麻烦。</p>
+<p><font size="4" face="幼圆" color="lightblue">to be continue···</font></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer"><div>
+    
+        <div style="font-family: monospace;text-align:center;color: #ca61ea;font-size:16px;">------ Everything Ends------</div>
+    
+</div>
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>mrilboom
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://mrilboom.github.io/2022/01/doing/" title="最近做的一些毕设工作">https://mrilboom.github.io/2022/01/doing/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/littlethings/" rel="tag"><i class="fa fa-tag"></i> littlethings</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/12/corner/" rel="prev" title="论文理解 XiangBai——【CVPR2018】Multi-Oriented Scene Text Detection via Corner Localization and Region Segmentation">
+                  <i class="fa fa-chevron-left"></i> 论文理解 XiangBai——【CVPR2018】Multi-Oriented Scene Text Detection via Corner Localization and Region Segmentation
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mrilboom</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">41k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:15</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">powered py <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 
+  </div><script color="0,0,255" opacity="0.5" zIndex="-1" count="40" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+  <div class="beian">
+  <font size=1><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">浙ICP备2021026684号 </a>
+    </font>
+  </div>
+    </div>
+  </footer>
+
+  
+  <script size="300" alpha="0.5" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://comment.mrilboom.love/","placeholder":"支持匿名提交哦（o´・ェ・｀o）","avatar":"retro","pageSize":10,"visitor":false,"comment_count":true,"requiredFields":[],"meta":["nick","mail","link"],"requiredMeta":[],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","dark":"body.darkmode--activated","el":"#waline-comments","path":"/2022/01/doing/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() => 
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => {
+    new Waline(CONFIG.waline);
+  });
+});
+</script><script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '1%',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+
+</body>
+</html>
