@@ -15,3 +15,5 @@ hidden: true
 ## 参考资料
 
 <div style="width:70%;margin:auto">{% asset_img xxx %}</div>
+tags:
+Linux Machine Learning Oracle PL/SQL Paper github python software ssh things
