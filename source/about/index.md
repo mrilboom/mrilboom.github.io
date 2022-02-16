@@ -10,9 +10,9 @@ comments: false
 * 能学markdown语法:point_left:
 * 能学学文字排版:point_left:
 * 能整理在配置各种东西时遇到的坑以及解决方法:point_left:
-* 能强迫自己让自己持之以恒的学习，对知识:book:以及版权:copyright:抱有严谨的态度:point_left:
+* 能强迫自己让自己持之以恒:bow_and_arrow: 的学习，对知识:book:以及版权:copyright:抱有严谨的态度:point_left:
 
-&emsp;&emsp;不出意外:shock的话，以后这里会记录:pencil:一些个人写代码:computer:时遇到的坑，或许偶尔会写一些生活中的点点滴滴？
+&emsp;&emsp;不出意外:boom:的话，以后这里会记录:pencil:一些个人写代码:computer:时遇到的坑，或许偶尔会写一些生活中的点点滴滴？
 
 
 
