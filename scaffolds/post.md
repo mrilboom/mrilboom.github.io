@@ -13,6 +13,7 @@ hidden: true
 ## 标题
 <font size=4 face="幼圆" color='lightblue'>to be continue···</font>
 ## 参考资料
+[author | title](web)
 
 <div style="width:70%;margin:auto">{% asset_img xxx %}</div>
 tags:
