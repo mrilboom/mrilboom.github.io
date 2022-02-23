@@ -1,6 +1,8 @@
 ---
 tags:
-  - things
+  - Machine Learning
+  - python
+  - Linux
 mathjax: true
 comments: true
 hidden: false
@@ -213,5 +215,3 @@ lmdb数据库不会自动将将Unicode格式编码，因此存放数据时，必
 {% asset_img 20211223103110135.png %}
 
 一堆乱码，后面费了很大的劲查询资料才发现是因为系统空间不足了，开辟1T的空间，但是系统磁盘不够，于是报错，于是我就调小点，调了大概70g左右，这个果然奏效了，然后等程序运行结束一看，生成的数据库文件竟然真的足足70G，我原以为这个只是开辟了一个临时空间，在运行结束后会将资源释放，结果并不是我想的那样。在windows的情况下，输入的mapsize大小就是最后生成数据库文件的大小，因此在windows下，mapsize需要特别注意的考虑一下，不然之后处理起来会很麻烦。
-
-<font size=4 face="幼圆" color='lightblue'>to be continue···</font>

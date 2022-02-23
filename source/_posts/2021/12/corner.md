@@ -6,7 +6,7 @@ mathjax: true
 comments: true
 hidden: false
 date: 2021-12-24 16:38:17
-title: 论文理解 XiangBai——【CVPR2018】Multi-Oriented Scene Text Detection via Corner Localization and Region Segmentation
+title: 论文简述 XiangBai——【CVPR2018】Multi-Oriented Scene Text Detection via Corner Localization and Region Segmentation
 ---
 ***
 Multi-Oriented Scene Text Detection via Corner Localization and Region Segmentation
@@ -36,7 +36,7 @@ Multi-Oriented Scene Text Detection via Corner Localization and Region Segmentat
 
 由此可以**解决文本倾斜的问题，文本旋转问题得到解决**，
 
-（吹：）不管是单个文字还是单词还是句子，都可以分割的很好。
+不管是单个文字还是单词还是句子，都可以分割的很好。
 
 
 
@@ -99,4 +99,3 @@ FPN和DSSD在这两个方面做的挺不错，因此也采用了FPN/DSSD的结�
 
 ## 参考资料
 [Multi-Oriented Scene Text Detection via Corner Localization and Region Segmentation](https://arxiv.org/abs/1802.08948)
-<font size=4 face="幼圆" color='lightblue'>to be continue···</font>
