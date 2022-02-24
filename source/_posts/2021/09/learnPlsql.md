@@ -11,7 +11,8 @@ title: Pl/SQL 学习笔记(Oracle 11g 从入门到精通第4章)
 &emsp;&emsp;普通的sql语句只能进行简单的查询和一些设置, 单靠sql很难实现一些复杂的逻辑, 正是因为原来的sql语句局限性太高, 不能实现一些自动化的处理过程, 于是就出现了了 PL/SQL(Procedure Language & Structured Query Language, 过程化 SQL 语言), 它在原先的一些普通sql语句的基础上加入了流程控制语句, 如while、if 等循环或者逻辑语句, 这使得sql能够进行一些复杂的流程处理, 能够写出一些自动化脚本以供使用. <!-- more -->
 
 ***
-***在学习过程中如果遇到 dbms_output.put_line() 没有输出的情况, 有可能是控制台输出没有打开, 试试在命令窗口设置`set serveroutput on`以开启输出显示. ***
+
+***在学习过程中如果遇到 dbms_output.put_line() 没有输出的情况, 有可能是控制台输出没有打开, 试试在命令窗口设置`set serveroutput on`以开启输出显示.***
 
 ## PL/SQL 数据类型
 
