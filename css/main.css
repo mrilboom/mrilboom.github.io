@@ -368,113 +368,16 @@ td {
   top: -5px;
   transform: rotate(-45deg);
 }
-/**
- * nnfx - a theme inspired by Netscape Navigator/Firefox
- *
- * @version 1.0.0
- * @author (c) 2020 Jim Mason <jmason@ibinx.com>
- * @license https://creativecommons.org/licenses/by-sa/4.0  CC BY-SA 4.0
- */
+pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}/*!
+  Theme: nnfx light
+  Description: a theme inspired by Netscape Navigator/Firefox
+  Author: (c) 2020-2021 Jim Mason <jmason@ibinx.com>
+  Maintainer: @RocketMan
+  License: https://creativecommons.org/licenses/by-sa/4.0  CC BY-SA 4.0
+  Updated: 2021-05-17
 
-.hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 0.5em;
-  background: #fff;
-  color: #000;
-}
-
-.xml .hljs-meta {
-  font-weight: bold;
-  font-style: italic;
-  color: #48b;
-}
-
-.hljs-comment,
-.hljs-quote {
-  font-style: italic;
-  color: #070;
-}
-
-.hljs-name,
-.hljs-keyword {
-  color: #808;
-}
-
-.hljs-name,
-.hljs-attr {
-  font-weight: bold;
-}
-
-.hljs-string {
-  font-weight: normal;
-}
-
-.hljs-variable,
-.hljs-template-variable {
-  color: #477;
-}
-
-.hljs-code,
-.hljs-string,
-.hljs-meta-string,
-.hljs-number,
-.hljs-regexp,
-.hljs-link {
-  color: #00f;
-}
-
-.hljs-title,
-.hljs-symbol,
-.hljs-bullet,
-.hljs-built_in,
-.hljs-builtin-name {
-  color: #f40;
-}
-
-.hljs-section,
-.hljs-meta {
-  color: #642;
-}
-
-.hljs-class .hljs-title,
-.hljs-type {
-  color: #639;
-}
-
-.hljs-function .hljs-title,
-.hljs-attr,
-.hljs-subst {
-  color: #000;
-}
-
-.hljs-formula {
-  background-color: #eee;
-  font-style: italic;
-}
-
-.hljs-addition {
-  background-color: #beb;
-}
-
-.hljs-deletion {
-  background-color: #fbb;
-}
-
-.hljs-selector-id,
-.hljs-selector-class {
-  color: #964;
-}
-
-.hljs-doctag,
-.hljs-strong {
-  font-weight: bold;
-}
-
-.hljs-emphasis {
-  font-style: italic;
-}
-
+  @version 1.1.0
+*/.hljs{background:#fff;color:#000}.language-xml .hljs-meta,.language-xml .hljs-meta-string{font-weight:700;font-style:italic;color:#48b}.hljs-comment,.hljs-quote{font-style:italic;color:#070}.hljs-built_in,.hljs-keyword,.hljs-name{color:#808}.hljs-attr,.hljs-name{font-weight:700}.hljs-string{font-weight:400}.hljs-code,.hljs-link,.hljs-meta .hljs-string,.hljs-number,.hljs-regexp,.hljs-string{color:#00f}.hljs-bullet,.hljs-symbol,.hljs-template-variable,.hljs-title,.hljs-variable{color:#f40}.hljs-class .hljs-title,.hljs-title.class_,.hljs-type{font-weight:700;color:#639}.hljs-attr,.hljs-function .hljs-title,.hljs-subst,.hljs-tag,.hljs-title.function_{color:#000}.hljs-formula{background-color:#eee;font-style:italic}.hljs-addition{background-color:#beb}.hljs-deletion{background-color:#fbb}.hljs-meta{color:#269}.hljs-section,.hljs-selector-class,.hljs-selector-id,.hljs-selector-pseudo,.hljs-selector-tag{font-weight:700;color:#48b}.hljs-selector-pseudo{font-style:italic}.hljs-doctag,.hljs-strong{font-weight:700}.hljs-emphasis{font-style:italic}
 .highlight:hover .copy-btn,
 pre:hover .copy-btn {
   opacity: 1;
