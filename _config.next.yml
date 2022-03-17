@@ -361,8 +361,8 @@ codeblock:
   # Code Highlight theme
   # All available themes: https://theme-next.js.org/highlight/
   theme:
-    light: nnfx
-    dark: nnfx
+    light: nnfx-light
+    dark: nnfx-dark
   prism:
     light: prism
     dark: prism-dark
