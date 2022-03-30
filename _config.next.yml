@@ -215,7 +215,7 @@ footer:
   # Beian ICP and gongan information for Chinese users. See: https://beian.miit.gov.cn, http://www.beian.gov.cn
   beian:
     enable: true
-    icp: 浙ICP备2021026684号
+    icp: 浙ICP备2021026684号-2
     # The digit in the num of gongan beian. 
     gongan_id: 
     # The full num of gongan beian.
@@ -908,7 +908,7 @@ darkmode_js:
 # For more information: https://waline.js.org, https://github.com/lizheming/waline
 waline:
   enable: true
-  serverURL: https://comment.mrilboom.love/                     # Waline server address url
+  serverURL: https://comment.mrilboom.com/                     # Waline server address url
   placeholder: '支持匿名提交哦（o´・ェ・｀o）'                                    # Comment box placeholder
   avatar: retro                                               # Gravatar style
   meta: [nick, mail, link]                                  # Custom comment header

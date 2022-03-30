@@ -107,7 +107,6 @@ deploy:
   type: 'git'
   repo: 
     github: git@github.com:mrilboom/mrilboom.github.io.git
-    coding: git@e.coding.net:mrilboom/blog/mrilboom.github.io.git
     
 # 字数统计插件
 symbols_count_time:
