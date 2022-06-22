@@ -86,7 +86,7 @@ menu:
   about: /about/ || fa fa-user
   archives: /archives/ || fa fa-archive
   tags: /tags/ || fa fa-tags
-  comment: https://comment.mrilboom.love/ui || fa fa-comment
+  comment: https://comment.mrilboom.com/ui || fa fa-comment
   #categories: /categories/ || fa fa-th
   #schedule: /schedule/ || fa fa-calendar
   #sitemap: /sitemap.xml || fa fa-sitemap
@@ -512,6 +512,7 @@ math:
     tags: none
 
   katex:
+    cdn: https://unpkg.com/katex@0.10.2/dist/katex.min.css
     enable: false
     # See: https://github.com/KaTeX/KaTeX/tree/master/contrib/copy-tex
     copy_tex: false
@@ -873,7 +874,12 @@ vendors:
   # The default CDN provider of third-party plugins.
   # Available values: local | jsdelivr | unpkg | cdnjs
   # Dependencies for `plugins: local`: https://github.com/next-theme/plugins
-  plugins: jsdelivr
+  plugins: unpkg
+  # Custom CDN URL
+  # For example:
+  # custom_cdn_url: https://cdn.jsdelivr.net/npm/${npm_name}@${version}/${minified}
+  # custom_cdn_url: https://cdnjs.cloudflare.com/ajax/libs/${cdnjs_name}/${version}/${cdnjs_file}
+  custom_cdn_url: https://lib.baomitu.com/${cdnjs_name}/${version}/${cdnjs_file}
   # Darkmode.js
   darkmode_js:
 
@@ -889,7 +895,7 @@ images: images
 # Darkmode JS
 # For more information: https://github.com/rqh656418510/hexo-next-darkmode, https://github.com/sandoche/Darkmode.js
 darkmode_js:
-  enable: true
+  enable: false
   bottom: '64px' # default: '32px'
   right: 'unset' # default: '32px'
   left: '1%' # default: 'unset'
@@ -910,7 +916,7 @@ waline:
   enable: true
   serverURL: https://comment.mrilboom.com/                     # Waline server address url
   placeholder: '支持匿名提交哦（o´・ェ・｀o）'                                    # Comment box placeholder
-  avatar: retro                                               # Gravatar style
+  avatar: retro                                             # Gravatar style
   meta: [nick, mail, link]                                  # Custom comment header
   pageSize: 10                                              # Pagination size
   lang: zh-cn                                               # Language, available values: en, zh-cn

@@ -104,9 +104,9 @@ KeePass这款软件真心好用，有了这款软件我就再也不用担心被�
 
 ### 文件链接
 
-KeePass2.4.9:    http://file.mrilboom.love/KeePass-2.49.zip
+KeePass2.4.9:    http://file.mrilboom.com/KeePass-2.49.zip
 
-中文语言包:  http://file.mrilboom.love/KeePass-2.46-Chinese_Simplified.zip
+中文语言包:  http://file.mrilboom.com/KeePass-2.46-Chinese_Simplified.zip
 
 ### 数据库创建、初始设置
 
